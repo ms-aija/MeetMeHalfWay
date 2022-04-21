@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const OriginSearchItem = ({ allAirports }) => {
+const OriginSearchItem = ({ allAirports, listId }) => {
   const [originInput, setOriginInput] = useState('');
   const filteredAirports = allAirports.filter(el => {
     return el.code.toLowerCase().includes(originInput.toLowerCase()) ||
@@ -11,18 +11,21 @@ const OriginSearchItem = ({ allAirports }) => {
   })
   const shortlistFilteredAirports = filteredAirports.slice(0,7);
   // console.log({shortlistFilteredAirports});
+  console.log({allAirports});
+  console.log({filteredAirports});
+  console.log({shortlistFilteredAirports});
 
   return (
     <div className='OriginSearchItem'>
       <label>
         Origin
         <input
-          list='airport-city-list'
+          list={listId}
           name='airport-city'
           onChange={(e) => setOriginInput(e.target.value)}
         />
       </label>
-      <datalist id='airport-city-list'>
+      <datalist id={listId}>
         {shortlistFilteredAirports.map(airport => {
             return <option key={airport.code} value={airport.code}>{`${airport.name} (${airport.city}, ${airport.country})`}</option>
           })}

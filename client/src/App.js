@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import './App.scss';
 import { getAirportList } from './services/airportsService';
+import { sortByDirectFlightCount } from './utils/sort';
 
 import Navbar from './components/Navbar';
 import Search from './components/Search';
@@ -18,7 +19,7 @@ function App() {
         alert('Oops, something went wrong. Please try again');
       } else {
         console.log('is in getAirportList in App.js');
-        return setAllAirports(result);
+        return setAllAirports(sortByDirectFlightCount(result));
       }
     })
     .catch(err => {

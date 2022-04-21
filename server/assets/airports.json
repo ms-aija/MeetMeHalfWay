@@ -5380,6 +5380,26 @@
     "carriers": "9"
   },
   {
+    "code": "BER",
+    "lat": "52.2200",
+    "lon": "13.3012",
+    "name": "Berlin Brandenburg International Airport",
+    "city": "Sch\u00f6nefeld",
+    "state": "Bundesland Brandenburg",
+    "country": "Germany",
+    "woeid": "22276234",
+    "tz": "Europe\/Berlin",
+    "phone": "",
+    "type": "Airports",
+    "email": "",
+    "url": "",
+    "runway_length": "9843",
+    "elev": "154",
+    "icao": "EDDB",
+    "direct_flights": "186",
+    "carriers": "21"
+  },
+  {
     "code": "BET",
     "lat": "60.7788",
     "lon": "-161.847",
