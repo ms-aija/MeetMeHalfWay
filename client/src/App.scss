@@ -36,18 +36,30 @@ body {
 
 .Search {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
   width: 50%;
-  min-height: 50px;
+  min-height: 80px;
+  margin-bottom: 10px;
+}
+
+.origin-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
 }
 
 .OriginSearchItem {
-  margin-right: 20px;
+  padding-right: 20px;
 }
 
 input {
   margin: 0 5px;
+}
+
+button {
+  width: 70px;
+  align-self: flex-end;
 }
 
 .SearchResult {

@@ -11,6 +11,9 @@ import SearchResult from './components/SearchResult';
 
 function App() {
   const [allAirports, setAllAirports] = useState([])
+  const [originAirports, setOriginAirports] = useState([])
+  const [destinationCities, setDestinationCities] = useState([])
+  // console.log({originAirports});
 
   useEffect(() => {
     getAirportList()
@@ -18,7 +21,7 @@ function App() {
       if (result.status === 500) {
         alert('Oops, something went wrong. Please try again');
       } else {
-        console.log('is in getAirportList in App.js');
+        // console.log('is in getAirportList in App.js');
         return setAllAirports(sortByDirectFlightCount(result));
       }
     })
@@ -30,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Search allAirports={allAirports} />
+      <Search allAirports={allAirports} setOriginAirports={setOriginAirports} originAirports={originAirports} />
       <SearchResult/>
     </div>
   );
