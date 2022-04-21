@@ -6,13 +6,15 @@ async function getDestinationCityList(req, res) {
   try {
     const listOfDestinationCities = [];
     // Create an array or all destination city IATA codes
+    // console.log('param: ',req.params.id);
     for (let element of destinationData) {
       // console.log('element origin: ',element.meta.origin);
-      // console.log('param: ',req.params.iataCode);
-      if (element.meta.origin === req.params.iataCode) {
-        for (let city of element.data) {
-          listOfDestinationCities.push(city);
-        }
+      if (element.meta.origin === req.params.id) {
+        // console.log('element.data: ',element.data)
+        listOfDestinationCities.push(element.data)
+        // for (let city of element.data) {
+          // listOfDestinationCities.push(city);
+        // }
       }
     }
     // Response

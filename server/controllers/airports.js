@@ -5,7 +5,7 @@ const airportsData = require('../assets/airports.json');
 
 async function getAirportList(req, res) {
   try {
-    console.log('is in getAirportList');
+    // console.log('is in getAirportList');
     // console.log('airport data sample: ',airportsData.slice(0,2));
     const listOfAirports = [];
     const minDirectFlightsFromAirport = 30;

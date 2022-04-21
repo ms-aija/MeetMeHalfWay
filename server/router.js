@@ -6,7 +6,7 @@ const router = Router();
 
 // Routes
 router.get('/airports', airportsController.getAirportList);
-router.get('/destinations/:iataCode', destinationController.getDestinationCityList);
+router.get('/destinations/:id', destinationController.getDestinationCityList);
 
 
 module.exports = router;
