@@ -1,10 +1,10 @@
 import OriginSearchItem from "./OriginSearchItem"
 
-const Search = () => {
+const Search = ({ allAirports }) => {
   return (
     <div className='Search'>
-      <OriginSearchItem />
-      <OriginSearchItem />
+      <OriginSearchItem allAirports={allAirports} />
+      <OriginSearchItem allAirports={allAirports} />
     </div>
   )
 }

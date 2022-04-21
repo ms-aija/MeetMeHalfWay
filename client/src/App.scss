@@ -42,6 +42,14 @@ body {
   min-height: 50px;
 }
 
+.OriginSearchItem {
+  margin-right: 20px;
+}
+
+input {
+  margin: 0 5px;
+}
+
 .SearchResult {
   display: flex;
   flex-direction: column;

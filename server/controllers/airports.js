@@ -1,13 +1,14 @@
+// No DB or models. Data coming directly from a json file.
 const airportsData = require('../assets/airports.json');
 
 async function getAirportList(req, res) {
   try {
-    console.log('is in getAiportList');
+    console.log('is in getAirportList');
     // console.log('airport data sample: ',airportsData.slice(0,2));
     const listOfAirports = [];
-    const minDirectFlightsFromAirport = 20;
+    const minDirectFlightsFromAirport = 40;
     for (let element of airportsData) {
-      console.log({element});
+      // console.log({element});
       if (element.direct_flights >= minDirectFlightsFromAirport) {
         itemToAdd = {
           code: element.code,
