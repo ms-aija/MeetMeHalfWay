@@ -4,7 +4,7 @@ const destinationController = require('./controllers/destinations');
 
 const router = Router();
 
-// Routes
+// -- Routes
 router.get('/airports', airportsController.getAirportList);
 router.get('/destinations/:id', destinationController.getDestinationCityList);
 

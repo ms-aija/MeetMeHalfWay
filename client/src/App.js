@@ -20,7 +20,7 @@ function App() {
   console.log({destinationCities});
   // console.log({commonDestinations});
 
-  // Get list of all airports
+  // -- Get list of all airports
   useEffect(() => {
     // console.log('is in useEffect for all airports')
     getAirportList()
@@ -37,7 +37,7 @@ function App() {
       })
   }, [])
 
-  // Get list of destination cities for each origin, fetched only when origin state changes
+  // -- Get list of destination cities for each origin, fetched only when origin state changes
   useEffect(() => {
     // console.log('is in useEffect for destinations')
     // console.log('originAirports in useEffect to get destination: ', originAirports)
@@ -48,8 +48,11 @@ function App() {
         if (result.status === 500) {
           alert('Oops, something went wrong. Please try again');
         } else {
-          // return setDestinationCities(prev => [...prev, result]);
-          return setDestinationCities(prev => findCommonArrayEls([...prev, result]));
+          console.log('result in useEffect: ', result)
+          // -- Return two arrays
+          return setDestinationCities(prev => [...prev, result]);
+          // -- Return two arrays merged into one (not working)
+          // return setDestinationCities(prev => findCommonArrayEls([...prev, result]));
         }
       })
       .catch(err => {

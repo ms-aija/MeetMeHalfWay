@@ -1,14 +1,19 @@
+// -- Use line 2 instead of line 4 when checking function in node with test data below
+// const findCommonArrayEls = (arrOfArrs) => {
+
+// -- Export function
 export const findCommonArrayEls = (arrOfArrs) => {
-  console.log('is in findCommonArrayEls function');
+  // console.log('is in findCommonArrayEls function', arrOfArrs);
+  console.log('length of arrOfArrs: ', arrOfArrs.length)
+  // return arrOfArrs;
   const commonElsArr = [];
   if (arrOfArrs.length === 1) {
     commonElsArr.push(arrOfArrs[0]);
   } else {
-    let toDo = arrOfArrs;
+    let toDo = [...arrOfArrs];
     console.log('toDo before while: ', toDo)
     // console.log('toDo length: ', toDo.length)
     while (toDo.length > 1) {
-      // toDo[0] = toDo[0].filter(val => toDo[1].includes(val));
       toDo[0] = toDo[0].filter(function(o1) {
         return toDo[1].some(function(o2) {
           return o1.iataCode === o2.iataCode
@@ -19,22 +24,23 @@ export const findCommonArrayEls = (arrOfArrs) => {
     }
     commonElsArr.push(toDo[0]);
   }
+  console.log('common els in function: ', commonElsArr);
   return commonElsArr;
 }
 
 
-//TEST DATA
+// -- TEST DATA (mock of data returned from API)
 // const arrOfArrs3 = [
 //   [
 //     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'ABZ' },
-//     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'CDA' },
-//     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'FGG' },
-//     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'MNO' }
+//     { type: 'location', subtype: 'city', name: 'CITY2', iataCode: 'CDA' },
+//     { type: 'location', subtype: 'city', name: 'CITY3', iataCode: 'FGG' },
+//     { type: 'location', subtype: 'city', name: 'CITY4', iataCode: 'MNO' }
 //   ],
 //   [
 //     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'ABZ' },
-//     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'FGG' },
-//     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'MNO' }
+//     { type: 'location', subtype: 'city', name: 'CITY3', iataCode: 'FGG' },
+//     // { type: 'location', subtype: 'city', name: 'CITY4', iataCode: 'MNO' }
 //   ]
 // ]
 
