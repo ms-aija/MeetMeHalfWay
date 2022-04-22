@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { getDestinationCityList } from "../services/airportsService";
 import { findCommonArrayEls } from "../utils/findCommon"
 
-const Search = ({ allAirports, setDestinationCities }) => {
+const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
   const origin1Ref = useRef('');
   const origin2Ref = useRef('');
 
@@ -13,6 +13,7 @@ const Search = ({ allAirports, setDestinationCities }) => {
     // console.log('origin 2 ref: ', origin2Ref.current.value)
     // -- (1) Reset destination city state to get rid of previous search results
     setDestinationCities([]);
+    setOriginAirports([origin1Ref.current.value, origin2Ref.current.value]);
     // -- (2) Get destination cities for each of the searched airports
     // -- (3) Update destination city state with common destinations
     Promise.all([

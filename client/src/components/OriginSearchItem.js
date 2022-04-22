@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 const OriginSearchItem = ({ allAirports, listId, fieldref }) => {
   const [originInput, setOriginInput] = useState('');
+
   const filteredAirports = allAirports.filter(el => {
     const lowerCaseOriginInput = originInput.toLowerCase();
     return el.code.toLowerCase().includes(lowerCaseOriginInput) ||

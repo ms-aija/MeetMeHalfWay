@@ -19,7 +19,10 @@ async function getAirportList(req, res) {
           city: element.city,
           state: element.state,
           country: element.country,
-          direct_flights: element.direct_flights
+          direct_flights: element.direct_flights,
+          lat: element.lat,
+          lon: element.lon
+
         };
         listOfAirports.push(itemToAdd);
       }

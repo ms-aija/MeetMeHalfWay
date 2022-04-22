@@ -11,8 +11,10 @@ import SearchResult from './components/SearchResult';
 
 function App() {
   const [allAirports, setAllAirports] = useState([]);
+  const [originAirports, setOriginAirports] = useState([]);
   const [destinationCities, setDestinationCities] = useState([]);
-  console.log({destinationCities});
+  console.log({ originAirports });
+  console.log({ destinationCities });
 
   // -- Get list of all airports on initial page load
   useEffect(() => {
@@ -38,8 +40,13 @@ function App() {
       <Search
         allAirports={allAirports}
         setDestinationCities={setDestinationCities}
+        setOriginAirports={setOriginAirports}
       />
-      <SearchResult destinationCities={destinationCities} />
+      <SearchResult
+        destinationCities={destinationCities}
+        originAirports={originAirports}
+        allAirports={allAirports}
+      />
     </div>
   );
 }
