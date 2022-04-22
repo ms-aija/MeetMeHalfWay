@@ -7,6 +7,7 @@ const Search = ({ allAirports, setDestinationCities }) => {
   const origin1Ref = useRef('');
   const origin2Ref = useRef('');
 
+
   const handleSearch = () => {
     // console.log('origin 1 ref: ', origin1Ref.current.value)
     // console.log('origin 2 ref: ', origin2Ref.current.value)
