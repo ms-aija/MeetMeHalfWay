@@ -4,7 +4,7 @@ import { Icon } from 'leaflet';
 const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
   // console.log('destination cities in searchResult component: ', destinationCities)
 
-  // -- Create an array of origin airport with geo-location
+  // -- Create an array of origin airports with geo-location
   let originAirportGeoLocation = [];
   for (let originCode of originAirports) {
     let airportLocation = {};
@@ -23,6 +23,37 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
   }
   // console.log({originAirportGeoLocation});
 
+  // -- Create an array of destination cities with geo-location
+  let destinationCityGeoLocation = [];
+  // console.log('destination cities for geolocation: ', destinationCities);
+  // console.log('destination cities length: ', destinationCities.length)
+  let destCityLength = !destinationCities[0] ? 0 : destinationCities[0].length
+  // console.log({destCityLength})
+  for (let i = 0; i < destCityLength; i++) {
+    let destCityLocation = {};
+    for (let airport of allAirports) {
+      // console.log({airport});
+      // console.log('destCity in loop: ', destinationCities[0][i]);
+      if (airport.code === destinationCities[0][i].iataCode) {
+        destCityLocation = {
+          code: airport.code,
+          name: destinationCities[0][i].name,
+          lat: airport.lat,
+          lon: airport.lon
+        }
+        destinationCityGeoLocation.push(destCityLocation)
+      }
+    }
+    // console.log({destCityLocation})
+    if (!destCityLocation.code) {
+      destinationCityGeoLocation.push({
+        code: destinationCities[0][i].iataCode,
+        name: destinationCities[0][i].name,
+        lat: 9999,
+        lon: 9999})
+    }
+  }
+  // console.log({ destinationCityGeoLocation });
 
   return (
     <div className='SearchResult'>

@@ -12,3 +12,5 @@ OPTION 2:
 - Combine and filter array to get common destination cities
 - Update destination cities state with result from previous
 
+
+Cities list from https://www.nationsonline.org/oneworld/IATA_Codes/airport_code_list.htm
