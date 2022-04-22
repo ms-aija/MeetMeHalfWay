@@ -26,10 +26,11 @@ body {
 
 .Navbar {
   color: $color-white;
-  height: 100px;
+  height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   width:100vmax;
   background-color: $color-darkblue;
 }
@@ -54,7 +55,7 @@ body {
 }
 
 input {
-  margin: 0 5px;
+  margin: 20px 5px 0 0;
 }
 
 button {
@@ -67,4 +68,16 @@ button {
   flex-direction: column;
   width: 50%;
   min-height: 200px;
+}
+
+.list-of-destination-city-names {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.destination-city-name {
+  margin: 0 0 0 10px;
+  padding: 0;
+  font-size: 0.7rem;
 }

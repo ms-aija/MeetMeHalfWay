@@ -4,18 +4,20 @@
 // -- Export function
 export const findCommonArrayEls = (arrOfArrs) => {
   // console.log('is in findCommonArrayEls function', arrOfArrs);
-  console.log('length of arrOfArrs: ', arrOfArrs.length)
-  // return arrOfArrs;
+  // console.log('length of arrOfArrs: ', arrOfArrs.length)
   const commonElsArr = [];
   if (arrOfArrs.length === 1) {
-    commonElsArr.push(arrOfArrs[0]);
+    // console.log('is in findCommonArrayEls 1st if statement for array of single element');
+    commonElsArr.push([...arrOfArrs[0]]);
   } else {
     let toDo = [...arrOfArrs];
-    console.log('toDo before while: ', toDo)
+    // console.log('toDo before while: ', toDo)
+    // console.log('todo0', toDo[0][0].length);
+    // console.log('todo1', toDo[1][0].length);
     // console.log('toDo length: ', toDo.length)
     while (toDo.length > 1) {
-      toDo[0] = toDo[0].filter(function(o1) {
-        return toDo[1].some(function(o2) {
+      toDo[0][0] = toDo[0][0].filter(function(o1) {
+        return toDo[1][0].some(function(o2) {
           return o1.iataCode === o2.iataCode
         })
       })
@@ -24,12 +26,12 @@ export const findCommonArrayEls = (arrOfArrs) => {
     }
     commonElsArr.push(toDo[0]);
   }
-  console.log('common els in function: ', commonElsArr);
+  // console.log('common els in function: ', commonElsArr);
   return commonElsArr;
 }
 
 
-// -- TEST DATA (mock of data returned from API)
+//-- TEST DATA (mock of data returned from API)
 // const arrOfArrs3 = [
 //   [
 //     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'ABZ' },
