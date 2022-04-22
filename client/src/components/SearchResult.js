@@ -50,25 +50,53 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
         code: destinationCities[0][i].iataCode,
         name: destinationCities[0][i].name,
         lat: 9999,
-        lon: 9999})
+        lon: 9999
+      })
     }
   }
   // console.log({ destinationCityGeoLocation });
 
+  // -- Custom icons
+  const originIcon = new Icon({
+    iconUrl: '/icons8-location-64.png',
+    iconSize: [33, 33],
+    // iconAnchor: [22, 94],
+    // popupAnchor: [-0, -76]
+  })
+  const destIcon = new Icon({
+      iconUrl: '/icons8-select-24.png',
+      iconSize: [17, 17],
+      // iconAnchor: [22, 94],
+      // popupAnchor: [-0, -76]
+    })
+
+
+  // -- Dev
+
   return (
     <div className='SearchResult'>
-      <h4>Common destinations</h4>
 
-      <MapContainer center={[20, 0]} zoom={2} scrollWheelZoom={true}>
+      <MapContainer center={[30, 30]} zoom={2} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        {/* Origin airport markers */}
         {originAirportGeoLocation.map(origin => {
-          return <Marker key={origin.code} position={[origin.lat, origin.lon]}>
+          return <Marker key={origin.code} position={[origin.lat, origin.lon]} icon={originIcon}>
             <Popup>{origin.name} ({origin.code})</Popup>
           </Marker>
         })}
+
+        {/* Destination city markers */}
+        {destinationCityGeoLocation.map(destination => {
+          return <Marker key={destination.name} position={[destination.lat, destination.lon]} icon={destIcon}>
+            <Popup>{destination.name} ({destination.code})</Popup>
+          </Marker>
+        })}
+
+
       </MapContainer>
 
 
