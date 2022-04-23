@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const OriginSearchItem = ({ allAirports, listId, fieldref }) => {
+const OriginSearchItem = ({ allAirports, listId, itemId }) => {
   const [originInput, setOriginInput] = useState('');
 
   const filteredAirports = allAirports.filter(el => {
@@ -20,9 +20,9 @@ const OriginSearchItem = ({ allAirports, listId, fieldref }) => {
   return (
     <div className='OriginSearchItem'>
       <label>
-        Origin
         <input
-          ref={fieldref}
+          id={itemId}
+          placeholder='Airport/City...'
           list={listId}
           name='airport-city'
           onChange={(e) => {

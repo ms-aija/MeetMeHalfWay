@@ -18,7 +18,7 @@ function App() {
 
   // -- Get list of all airports on initial page load
   useEffect(() => {
-    // console.log('is in useEffect for all airports')
+    console.log('is in getting all airport list')
     getAirportList()
       .then(result => {
         if (result.status === 500) {

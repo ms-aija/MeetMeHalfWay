@@ -64,11 +64,11 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
     // popupAnchor: [-0, -76]
   })
   const destIcon = new Icon({
-      iconUrl: '/icons8-select-24.png',
-      iconSize: [17, 17],
-      // iconAnchor: [22, 94],
-      // popupAnchor: [-0, -76]
-    })
+    iconUrl: '/icons8-select-24.png',
+    iconSize: [17, 17],
+    // iconAnchor: [22, 94],
+    // popupAnchor: [-0, -76]
+  })
 
 
   // -- Dev
@@ -93,7 +93,10 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
         {/* Destination city markers */}
         {destinationCityGeoLocation.map(destination => {
           return <Marker key={destination.name} position={[destination.lat, destination.lon]} icon={destIcon}>
-            <Popup>{destination.name} ({destination.code})</Popup>
+            <Popup>
+              {destination.name} ({destination.code})
+              <br/><a href={`https://www.skyscanner.de/transport/flights/${originAirports[0]}/${destination.code}`} target="_blank">{originAirports[0]}-{destination.code}</a>
+            </Popup>
           </Marker>
         })}
       </MapContainer>
