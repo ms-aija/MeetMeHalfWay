@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Icon } from 'leaflet';
 
 const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
@@ -76,6 +76,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
   return (
     <div className='SearchResult'>
 
+
       <MapContainer center={[30, 30]} zoom={2} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -95,17 +96,17 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
             <Popup>{destination.name} ({destination.code})</Popup>
           </Marker>
         })}
-
-
       </MapContainer>
 
 
       <section className='list-of-destination-city-names'>
         {(destinationCities.length > 0) && (destinationCities[0].map(city => {
-          {/* console.log('cities in mapping destination cities: ', city) */ }
+          /* console.log('cities in mapping destination cities: ', city) */
           return <p key={city.name} className='destination-city-name'>{city.name}</p>
         }))}
       </section>
+
+
     </div>
   )
 }

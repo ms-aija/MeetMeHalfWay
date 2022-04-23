@@ -26,7 +26,7 @@ body {
 
 .Navbar {
   color: $color-white;
-  height: 100px;
+  height: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -38,16 +38,21 @@ body {
 .Search {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  margin-bottom: 30px;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+  background-color: $color-darkblue;
+  // margin-bottom: 30px;
+  color: $color-gray
 }
 
 .origin-input-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 5px;
+  width: 70vw;
 }
 
 .OriginSearchItem {
@@ -66,14 +71,19 @@ button {
 .SearchResult {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  min-height: 200px;
+  width: 100vw;
+  height: 80vh;
+  // min-height: 200px;
+  // position: relative;
 }
 
 .list-of-destination-city-names {
+  // position: absolute;
+  // bottom: 0px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  z-index: 2;
 }
 
 .destination-city-name {
@@ -84,6 +94,7 @@ button {
 
 .leaflet-container {
   width: 100%;
-  height: 325px;
-  margin-bottom: 20px;
+  height: 80vh;
+  // height: 325px;
+  // margin-bottom: 20px;
 }
