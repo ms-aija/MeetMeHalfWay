@@ -4,6 +4,7 @@ import './App.scss';
 import { getAirportList } from './services/airportsService';
 import { sortByDirectFlightCount } from './utils/sort';
 
+
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import SearchResult from './components/SearchResult';

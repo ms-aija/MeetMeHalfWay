@@ -1,7 +1,8 @@
 import OriginSearchItem from "./OriginSearchItem";
 import { useState } from "react";
 import { getDestinationCityList } from "../services/airportsService";
-import { findCommonArrayEls } from "../utils/findCommon"
+import { findCommonArrayEls } from "../utils/findCommon";
+// import { Button } from 'react-bootstrap';
 
 const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
 
@@ -60,18 +61,18 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
   return (
     <div className='Search'>
       <section className="origin-input-container">
-        <section>
+        <section className="origin-input-cities">
           {cityComponents.map(el => {
             return <OriginSearchItem key={el.index} allAirports={allAirports} itemId={el.itemId} listId={el.listId} />
           })}
         </section>
         <section className="add-remove-search-buttons">
           <>
-            {(cityComponents.length >= 2) && (cityComponents.length <= 5) && <button className="small-button" onClick={handleAddCity}>+</button>}
-            {(cityComponents.length >= 3) && <button className="small-button" onClick={handleRemoveCity}>-</button>}
+            {(cityComponents.length >= 2) && (cityComponents.length <= 5) && <button className="search-button small-button" onClick={handleAddCity}>+</button>}
+            {(cityComponents.length >= 3) && <button className="search-button small-button" onClick={handleRemoveCity}>-</button>}
           </>
 
-          <button onClick={handleSearch} >Search</button>
+          <button className='search-button' onClick={handleSearch} >Search</button>
         </section>
       </section>
     </div>
