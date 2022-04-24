@@ -93,9 +93,25 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
         {/* Destination city markers */}
         {destinationCityGeoLocation.map(destination => {
           return <Marker key={destination.name} position={[destination.lat, destination.lon]} icon={destIcon}>
-            <Popup>
+            <Popup width={70}>
               {destination.name} ({destination.code})
-              <br/><a href={`https://www.skyscanner.de/transport/flights/${originAirports[0]}/${destination.code}`} target="_blank">{originAirports[0]}-{destination.code}</a>
+              <br />
+              <div className='map-popup-flight-list'>
+              ✈︎
+              {originAirports.map(airport => {
+                return <div className='map-popup-flight-list-item'>
+                  <a
+                    href={`https://www.skyscanner.de/transport/flights/${airport}/${destination.code}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    &nbsp;{airport}-{destination.code}&nbsp;
+                  </a>
+                  ✈︎
+                </div>
+              }
+              )}
+              </div>
             </Popup>
           </Marker>
         })}

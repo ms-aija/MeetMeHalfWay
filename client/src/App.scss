@@ -31,7 +31,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width:100vmax;
+  width: 100vmax;
   background-color: $color-darkblue;
 }
 
@@ -40,7 +40,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 10vh;
+  min-height: 10vh;
   background-color: $color-darkblue;
   // margin-bottom: 30px;
   color: $color-gray
@@ -48,11 +48,16 @@ body {
 
 .origin-input-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  padding-top: 10px;
   flex-wrap: wrap;
   margin-bottom: 5px;
   width: 70vw;
+  background-color: $color-yellow;
+  border-radius: 5px;
+  height: 40px;
+  // opacity: 0.7;
 }
 
 .OriginSearchItem {
@@ -101,4 +106,17 @@ button {
 
 .small-button {
   width: 1.5rem;
+}
+
+.map-popup-flight-list-item {
+  font-size: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.map-popup-flight-list {
+  font-size: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

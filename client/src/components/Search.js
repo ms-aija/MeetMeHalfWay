@@ -1,5 +1,5 @@
 import OriginSearchItem from "./OriginSearchItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getDestinationCityList } from "../services/airportsService";
 import { findCommonArrayEls } from "../utils/findCommon"
 
@@ -13,7 +13,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
   )
 
   const handleAddCity = () => {
-    let counter = cityComponents.length+1;
+    let counter = cityComponents.length + 1;
     let city = {
       index: counter,
       itemId: `item${counter}`,
@@ -28,7 +28,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
 
   const handleRemoveCity = () => {
     let counter = cityComponents.length;
-    console.log({counter})
+    console.log({ counter })
     let cityComp = [...cityComponents];
     cityComp.pop();
     setCityComponents(cityComp);
@@ -59,15 +59,20 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
 
   return (
     <div className='Search'>
-      <section className='origin-input-container'>
-        {cityComponents.map(el => {
-          return <OriginSearchItem key={el.index} allAirports={allAirports} itemId={el.itemId} listId={el.listId} />
-        })}
-        <>
-          {(cityComponents.length >= 2) && (cityComponents.length <= 5) && <button className="small-button" onClick={handleAddCity}>+</button>}
-          {(cityComponents.length >= 3) && <button className="small-button" onClick={handleRemoveCity}>-</button>}
-        </>
-        <button onClick={handleSearch} >Search</button>
+      <section className="origin-input-container">
+        <section>
+          {cityComponents.map(el => {
+            return <OriginSearchItem key={el.index} allAirports={allAirports} itemId={el.itemId} listId={el.listId} />
+          })}
+        </section>
+        <section className="add-remove-search-buttons">
+          <>
+            {(cityComponents.length >= 2) && (cityComponents.length <= 5) && <button className="small-button" onClick={handleAddCity}>+</button>}
+            {(cityComponents.length >= 3) && <button className="small-button" onClick={handleRemoveCity}>-</button>}
+          </>
+
+          <button onClick={handleSearch} >Search</button>
+        </section>
       </section>
     </div>
   )
