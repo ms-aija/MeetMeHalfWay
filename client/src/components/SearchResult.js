@@ -77,7 +77,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
     <div className='SearchResult'>
 
 
-      <MapContainer center={[22, 10]} zoom={3} scrollWheelZoom={true}>
+      <MapContainer center={[37, 10]} zoom={3} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

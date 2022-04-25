@@ -18,6 +18,7 @@ function Index() {
   console.log({ destinationCities });
 
 
+
   const [searchParams, setSearchParams] = useSearchParams();
   const origin1 = searchParams.get('origin1' || '');
   const origin2 = searchParams.get('origin2' || '');

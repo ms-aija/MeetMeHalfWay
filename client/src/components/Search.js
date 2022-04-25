@@ -1,5 +1,5 @@
 import OriginSearchItem from "./OriginSearchItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getDestinationCityList } from "../services/airportsService";
 import { findCommonArrayEls } from "../utils/findCommon";
 // import { Button } from 'react-bootstrap';
@@ -91,6 +91,20 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       })
       .catch(err => console.error(err))
   }
+
+  useEffect(() => {
+    if(
+      (queryParamsArray[0] !== null) ||
+      (queryParamsArray[1] !== null) ||
+      (queryParamsArray[2] !== null) ||
+      (queryParamsArray[3] !== null) ||
+      (queryParamsArray[4] !== null) ||
+      (queryParamsArray[5] !== null) ||
+      (queryParamsArray[6] !== null)
+    ) {
+      handleSearch()
+    }
+  },[])
 
   return (
     <div className='Search'>
