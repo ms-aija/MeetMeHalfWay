@@ -21,6 +21,7 @@ const OriginSearchItem = ({ allAirports, listId, itemId }) => {
     <div className='OriginSearchItem'>
       <label>
         <input
+          // value=''
           id={itemId}
           placeholder='Airport/City...'
           list={listId}

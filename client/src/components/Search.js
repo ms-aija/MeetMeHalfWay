@@ -4,14 +4,31 @@ import { getDestinationCityList } from "../services/airportsService";
 import { findCommonArrayEls } from "../utils/findCommon";
 // import { Button } from 'react-bootstrap';
 
-const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
+const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryParamsArray }) => {
 
-  const [cityComponents, setCityComponents] = useState(
-    [
-      { index: 1, itemId: 'item1', listId: 'list1' },
-      { index: 2, itemId: 'item2', listId: 'list2' },
-    ]
-  )
+  const [cityComponents, setCityComponents] = useState(() => {
+    let initialState = [];
+    if (queryParamsArray[0] === null && queryParamsArray[1] === null) {
+      initialState = [
+        { index: 1, itemId: 'item1', listId: 'list1' },
+        { index: 2, itemId: 'item2', listId: 'list2' },
+      ]
+    } else {
+      let counter = 1;
+      for (let el of queryParamsArray) {
+        if (el !== null) {
+          let city = {
+            index: counter,
+            itemId: `item${counter}`,
+            listId: `list${counter}`
+          }
+          initialState.push(city);
+          counter++;
+        }
+      }
+    }
+    return initialState;
+  })
 
   const handleAddCity = () => {
     let counter = cityComponents.length + 1;
@@ -61,7 +78,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
   return (
     <div className='Search'>
       {/* <section className="origin-input-container"> */}
-        <section className="origin-city-input-container">
+      <section className="origin-city-input-container">
         <div className="origin-input-cities">
           {cityComponents.map(el => {
             return <OriginSearchItem key={el.index} allAirports={allAirports} itemId={el.itemId} listId={el.listId} />

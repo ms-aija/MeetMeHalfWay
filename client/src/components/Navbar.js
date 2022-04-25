@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <section className='Navbar'>
       <div className="navbar-title-animation">
-        <h1>MeetMeHalfWay</h1>
+        <h1>MeetMeHalf<span>W</span>ay</h1>
         <div>
           <Lottie
             options={defaultOptions}
