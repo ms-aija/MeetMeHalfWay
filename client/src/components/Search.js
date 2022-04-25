@@ -4,7 +4,7 @@ import { getDestinationCityList } from "../services/airportsService";
 import { findCommonArrayEls } from "../utils/findCommon";
 // import { Button } from 'react-bootstrap';
 
-const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryParamsArray }) => {
+const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryParamsArray, setSearchParams }) => {
 
   const [cityComponents, setCityComponents] = useState(() => {
     let initialState = [];
@@ -60,10 +60,23 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       origins.push(document.getElementById(el.itemId).value);
     }
 
-    // -- (1) Reset destination city state to get rid of previous search results
+    // -- Reset destination city state to get rid of previous search results
     setDestinationCities([]);
     setOriginAirports(origins);
 
+    // -- Update query params
+    console.log({origins})
+    let queryParamsObject = {}
+    let counter = 1
+    for (let el of origins) {
+      let name = `origin${counter}`
+      counter++
+      queryParamsObject[name] = el
+    }
+    console.log({queryParamsObject})
+    setSearchParams(queryParamsObject);
+
+    // -- Get destinations for each origin city and find common destinations
     Promise.all(promises)
       .then(results => {
         // console.log('results from promise.all in handleSearch ftion: ', results);

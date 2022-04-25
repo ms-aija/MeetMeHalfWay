@@ -13,4 +13,6 @@ OPTION 2:
 - Update destination cities state with result from previous
 
 
-Cities list from https://www.nationsonline.org/oneworld/IATA_Codes/airport_code_list.htm
+Cities list from https://www.nationsonline.org/oneworld/IATA_Codes/airport_code_list.html
+
+

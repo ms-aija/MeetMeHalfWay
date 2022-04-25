@@ -56,6 +56,7 @@ function Index() {
           setDestinationCities={setDestinationCities}
           setOriginAirports={setOriginAirports}
           queryParamsArray={queryParamsArray}
+          setSearchParams={setSearchParams}
         />
       </div>
       <SearchResult
