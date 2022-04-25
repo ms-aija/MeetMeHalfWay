@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const OriginSearchItem = ({ allAirports, listId, itemId }) => {
+const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }) => {
   const [originInput, setOriginInput] = useState('');
 
   const filteredAirports = allAirports.filter(el => {
@@ -21,7 +21,7 @@ const OriginSearchItem = ({ allAirports, listId, itemId }) => {
     <div className='OriginSearchItem'>
       <label>
         <input
-          // value=''
+          defaultValue={listDefaultVal}
           id={itemId}
           placeholder='Airport/City...'
           list={listId}

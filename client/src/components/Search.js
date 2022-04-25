@@ -10,17 +10,19 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     let initialState = [];
     if (queryParamsArray[0] === null && queryParamsArray[1] === null) {
       initialState = [
-        { index: 1, itemId: 'item1', listId: 'list1' },
-        { index: 2, itemId: 'item2', listId: 'list2' },
+        { index: 1, itemId: 'item1', listId: 'list1', listDefaultVal: '' },
+        { index: 2, itemId: 'item2', listId: 'list2', listDefaultVal: '' },
       ]
     } else {
       let counter = 1;
       for (let el of queryParamsArray) {
         if (el !== null) {
+          console.log({el})
           let city = {
             index: counter,
             itemId: `item${counter}`,
-            listId: `list${counter}`
+            listId: `list${counter}`,
+            listDefaultVal: el
           }
           initialState.push(city);
           counter++;
@@ -29,13 +31,15 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     }
     return initialState;
   })
+  console.log({cityComponents});
 
   const handleAddCity = () => {
     let counter = cityComponents.length + 1;
     let city = {
       index: counter,
       itemId: `item${counter}`,
-      listId: `list${counter}`
+      listId: `list${counter}`,
+      listDefaultVal: ''
     }
     let cityComp = [...cityComponents];
     cityComp.push(city)
@@ -65,7 +69,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     setOriginAirports(origins);
 
     // -- Update query params
-    console.log({origins})
+    console.log({ origins })
     let queryParamsObject = {}
     let counter = 1
     for (let el of origins) {
@@ -73,7 +77,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       counter++
       queryParamsObject[name] = el
     }
-    console.log({queryParamsObject})
+    console.log({ queryParamsObject })
     setSearchParams(queryParamsObject);
 
     // -- Get destinations for each origin city and find common destinations
@@ -94,7 +98,14 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       <section className="origin-city-input-container">
         <div className="origin-input-cities">
           {cityComponents.map(el => {
-            return <OriginSearchItem key={el.index} allAirports={allAirports} itemId={el.itemId} listId={el.listId} />
+            console.log({el})
+            return <OriginSearchItem
+              key={el.index}
+              allAirports={allAirports}
+              itemId={el.itemId}
+              listId={el.listId}
+              listDefaultVal={el.listDefaultVal}
+            />
           })}
         </div>
         {/* </section> */}
