@@ -25,11 +25,11 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
     // console.log({cityComp})
     setCityComponents(cityComp);
   }
-  console.log({ cityComponents })
+  // console.log({ cityComponents })
 
   const handleRemoveCity = () => {
-    let counter = cityComponents.length;
-    console.log({ counter })
+    // let counter = cityComponents.length;
+    // console.log({ counter })
     let cityComp = [...cityComponents];
     cityComp.pop();
     setCityComponents(cityComp);
@@ -49,7 +49,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
 
     Promise.all(promises)
       .then(results => {
-        console.log('results from promise.all in handleSearch ftion: ', results);
+        // console.log('results from promise.all in handleSearch ftion: ', results);
         let commonDestinations = findCommonArrayEls(results);
         // console.log('common destinations in handleSearch ftion: ', commonDestinations[0]);
         setDestinationCities(commonDestinations[0]);

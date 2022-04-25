@@ -2,11 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&family=Roboto:wght@300;400&family=Space+Mono&family=Ubuntu&family=Ubuntu+Mono&display=swap');
 
-$color-black: #000000;
-$color-darkblue: #14213d;
-$color-yellow: #fca311;
-$color-gray: #e5e5e5;
-$color-white: #ffffff;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&family=Righteous&family=Roboto:wght@300;400&family=Space+Mono&family=Ubuntu&family=Ubuntu+Mono&display=swap');
+
+$color-darkest: #8A4B63;
+$color-dark: #8F668B;
+$color-medium: #8D83AC;
+$color-light: #8C9FC3;
+$color-lightest: #94BAD3;
 
 :root {
   font-family: 'Roboto', sans-serif;
@@ -29,10 +31,12 @@ body {
 
 .navbar-search-container {
   background-image: linear-gradient(to bottom, #91bac5, #7ca5b0, #68909b, #547c87, #416973);
+  border-bottom: 3px solid whitesmoke;
+  border-top: 2px solid whitesmoke;
 }
 
 .Navbar {
-  color: $color-white;
+  color: whitesmoke;
   height: 23vh;
   display: flex;
   flex-direction: column;
@@ -71,7 +75,7 @@ body {
   min-height: 10vh;
   // background-color: $color-darkblue;
   // margin-bottom: 30px;
-  color: $color-gray
+  color: gray;
 }
 
 .origin-input-container {
@@ -149,7 +153,6 @@ button {
   color: #333333;
   cursor: pointer;
   display: inline-block;
-  // font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -165,12 +168,18 @@ button {
   touch-action: manipulation;
 }
 
+.search-button:hover {
+  // font-weight: 600;
+  background-color: rgb(162, 187, 194);
+  opacity: 1;
+}
+
 .SearchResult {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 80vh;
+  height: 67vh;
   // min-height: 200px;
   // position: relative;
 }
@@ -216,7 +225,7 @@ button {
 
 #footer {
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   width: 100%;
   border: 1px solid red;
   z-index: 2;

@@ -1,9 +1,8 @@
 import Lottie from 'react-lottie';
 import animationData from '../lotties/airplane-dots.json';
 
-
-
 const Navbar = () => {
+  // -- Setup for Lottie
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -21,7 +20,7 @@ const Navbar = () => {
           <Lottie
             options={defaultOptions}
             height={30}
-            width={110}
+            width={123}
           />
         </div>
       </div>
