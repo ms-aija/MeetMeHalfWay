@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/ms-aija/MeetMeHalfWay/issues"
   },
-  "homepage": "https://github.com/ms-aija/MeetMeHalfWay#readme"
+  "homepage": "https://github.com/ms-aija/MeetMeHalfWay#readme",
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-plugin-react": "^7.29.4"
+  },
+  "dependencies": {
+    "react-lottie": "^1.2.3"
+  }
 }

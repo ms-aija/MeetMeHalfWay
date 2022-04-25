@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&family=Roboto:wght@300;400&family=Space+Mono&family=Ubuntu&family=Ubuntu+Mono&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&family=Roboto:wght@300;400&family=Space+Mono&family=Ubuntu&family=Ubuntu+Mono&display=swap');
+
 $color-black: #000000;
 $color-darkblue: #14213d;
 $color-yellow: #fca311;
@@ -5,8 +9,7 @@ $color-gray: #e5e5e5;
 $color-white: #ffffff;
 
 :root {
-  font-family: 'Courier New', Courier, monospace;
-  margin: 0;
+  font-family: 'Roboto', sans-serif;
   padding: 0;
   box-sizing: border-box;
 }
@@ -24,25 +27,40 @@ body {
   padding: 0;
 }
 
+.navbar-search-container {
+  background-image: linear-gradient(to bottom, #91bac5, #7ca5b0, #68909b, #547c87, #416973);
+}
+
 .Navbar {
   color: $color-white;
-  height: 15vh;
+  height: 23vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vmax;
-  background-color: $color-darkblue;
+  // background-color: $color-darkblue;
 }
 
-.Navbar h2 {
+.navbar-title-animation {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+}
+
+.Navbar h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
   margin: 0;
   padding: 5px;
+  color: #002F38;
+  margin-right: 10px;
 }
 
 .Navbar p {
   margin: 0;
   padding: 2px;
+  font-weight: bolder;
 }
 
 .Search {
@@ -51,7 +69,7 @@ body {
   align-items: center;
   width: 100vw;
   min-height: 10vh;
-  background-color: $color-darkblue;
+  // background-color: $color-darkblue;
   // margin-bottom: 30px;
   color: $color-gray
 }
@@ -59,23 +77,38 @@ body {
 .origin-input-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  // align-items: center;
   // padding: 0;
   // padding-top: 10px;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   margin-bottom: 10px;
   width: 70vw;
-  background-color: $color-black;
-  border-radius: 5px;
+  background-color: hsla(40, 26%, 93%, 0.84);
+  // opacity: 0.7;
+  border-radius: 4px;
   min-height: 60px;
   // opacity: 0.7;
+}
+
+.origin-city-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  // align-self: stretch;
+  flex-wrap: wrap;
 }
 
 .origin-input-cities {
   display: flex;
   flex-direction: row;
+  // justify-content: center;
   flex-wrap: wrap;
+  max-width: 80%;
+  margin-top: 7px;
+  margin-left: 7px;
+  margin-bottom: 7px;
+  // margin-left: 10vw;
   // justify-content: flex-start;
 }
 .OriginSearchItem {
@@ -85,12 +118,17 @@ body {
 
 input {
   margin: 0px 0px 0 0;
+  padding-left: 0.7rem;
   height: 33px;
+  border: solid 1px gray;
   border-radius: 5px;
+  opacity: 1;
+  background-color: white;
 }
 
 .add-remove-search-buttons {
   display: flex;
+  margin-top: 7px;
 }
 
 button {
@@ -104,7 +142,7 @@ button {
 
 .search-button {
   height: 37px;
-  background-color: $color-yellow;
+  background-color: #91BAC5;
   opacity: 0.8;
   border-radius: 8px;
   border-width: 0;
@@ -130,6 +168,7 @@ button {
 .SearchResult {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100vw;
   height: 80vh;
   // min-height: 200px;
@@ -148,6 +187,7 @@ button {
 .destination-city-name {
   margin: 0 0 0 17px;
   padding: 0;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 0.7rem;
 }
 
@@ -155,6 +195,7 @@ button {
 .leaflet-container {
   width: 100%;
   height: 80vh;
+  z-index: 1;
   // height: 325px;
   // margin-bottom: 20px;
 }
@@ -171,4 +212,16 @@ button {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  border: 1px solid red;
+  z-index: 2;
+  width: 95vw;
+  background-color: hsla(40, 26%, 93%, 0.5);
+  border: 1px solid whitesmoke;
+  border-radius: 3px;
 }

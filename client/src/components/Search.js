@@ -60,16 +60,18 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities }) => {
 
   return (
     <div className='Search'>
-      <section className="origin-input-container">
-        <section className="origin-input-cities">
+      {/* <section className="origin-input-container"> */}
+        <section className="origin-city-input-container">
+        <div className="origin-input-cities">
           {cityComponents.map(el => {
             return <OriginSearchItem key={el.index} allAirports={allAirports} itemId={el.itemId} listId={el.listId} />
           })}
-        </section>
+        </div>
+        {/* </section> */}
         <section className="add-remove-search-buttons">
           <>
-            {(cityComponents.length >= 2) && (cityComponents.length <= 5) && <button className="search-button small-button" onClick={handleAddCity}>+</button>}
             {(cityComponents.length >= 3) && <button className="search-button small-button" onClick={handleRemoveCity}>-</button>}
+            {(cityComponents.length >= 2) && (cityComponents.length <= 5) && <button className="search-button small-button" onClick={handleAddCity}>+</button>}
           </>
 
           <button className='search-button' onClick={handleSearch} >Search</button>

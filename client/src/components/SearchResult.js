@@ -60,7 +60,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
   const originIcon = new Icon({
     iconUrl: '/icons8-location-64.png',
     iconSize: [33, 33],
-    // iconAnchor: [22, 94],
+    // iconAnchor: [1, 1],
     // popupAnchor: [-0, -76]
   })
   const destIcon = new Icon({
@@ -118,7 +118,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
       </MapContainer>
 
 
-      <section className='list-of-destination-city-names'>
+      <section className='list-of-destination-city-names' id='footer'>
         {(destinationCities.length > 0) && (destinationCities[0].map(city => {
           /* console.log('cities in mapping destination cities: ', city) */
           return <p key={city.name} className='destination-city-name'>{city.name}</p>

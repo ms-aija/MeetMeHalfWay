@@ -1,7 +1,30 @@
+import Lottie from 'react-lottie';
+import animationData from '../lotties/airplane-dots.json';
+
+
+
 const Navbar = () => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+
   return (
     <section className='Navbar'>
-      <h2>✈︎ MeetMeHalfWay ✈︎</h2>
+      <div className="navbar-title-animation">
+        <h1>MeetMeHalfWay</h1>
+        <div>
+          <Lottie
+            options={defaultOptions}
+            height={30}
+            width={110}
+          />
+        </div>
+      </div>
       <p>Discover common destinations served by direct flights</p>
     </section>
   )

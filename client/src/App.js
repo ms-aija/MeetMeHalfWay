@@ -5,6 +5,7 @@ import { getAirportList } from './services/airportsService';
 import { sortByDirectFlightCount } from './utils/sort';
 
 
+
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import SearchResult from './components/SearchResult';
@@ -34,15 +35,16 @@ function App() {
       })
   }, [])
 
-
   return (
     <div className="App">
+      <div className='navbar-search-container'>
       <Navbar />
       <Search
         allAirports={allAirports}
         setDestinationCities={setDestinationCities}
         setOriginAirports={setOriginAirports}
       />
+      </div>
       <SearchResult
         destinationCities={destinationCities}
         originAirports={originAirports}
