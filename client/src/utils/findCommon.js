@@ -11,13 +11,12 @@ export const findCommonArrayEls = (arrOfArrs) => {
     commonElsArr.push([...arrOfArrs[0]]);
   } else {
     let toDo = [...arrOfArrs];
-    // console.log('toDo before while: ', toDo)
-    // console.log('todo0', toDo[0][0].length);
-    // console.log('todo1', toDo[1][0].length);
-    // console.log('toDo length: ', toDo.length)
+    console.log('toDo before while: ', toDo)
+    console.log('todo[0]', toDo[0], 'todo[0] length', toDo[0].length);
+    console.log('todo[0][0]', toDo[0][0], 'todo[0][0] length', toDo[0][0].length);
     while (toDo.length > 1) {
-      toDo[0][0] = toDo[0][0].filter(function(o1) {
-        return toDo[1][0].some(function(o2) {
+      toDo[0] = toDo[0].filter(function(o1) {
+        return toDo[1].some(function(o2) {
           return o1.iataCode === o2.iataCode
         })
       })

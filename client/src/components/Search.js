@@ -63,6 +63,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       promises.push(getDestinationCityList(document.getElementById(el.itemId).value));
       origins.push(document.getElementById(el.itemId).value);
     }
+    console.log({promises})
 
     // -- Reset destination city state to get rid of previous search results
     setDestinationCities([]);

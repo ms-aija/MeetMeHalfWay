@@ -6,8 +6,8 @@ const e = require('express');
 // import { client_secret } from './playground';
 
 const amadeus = new Amadeus({
-  clientId: process.env.client_id,
-  clientSecret: process.env.client_secret
+  clientId: 'YOUR_ID_HERE',
+  clientSecret: 'YOUR_SECRET_HERE'
 });
 
 function getDestinationCityList(req, res) {

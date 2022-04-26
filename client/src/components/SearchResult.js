@@ -27,17 +27,17 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
   let destinationCityGeoLocation = [];
   // console.log('destination cities for geolocation: ', destinationCities);
   // console.log('destination cities length: ', destinationCities.length)
-  let destCityLength = !destinationCities[0] ? 0 : destinationCities[0].length
+  let destCityLength = !destinationCities ? 0 : destinationCities.length
   // console.log({destCityLength})
   for (let i = 0; i < destCityLength; i++) {
     let destCityLocation = {};
     for (let airport of allAirports) {
       // console.log({airport});
       // console.log('destCity in loop: ', destinationCities[0][i]);
-      if (airport.code === destinationCities[0][i].iataCode) {
+      if (airport.code === destinationCities[i].iataCode) {
         destCityLocation = {
           code: airport.code,
-          name: destinationCities[0][i].name,
+          name: destinationCities[i].name,
           lat: airport.lat,
           lon: airport.lon
         }
@@ -47,8 +47,8 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
     // console.log({destCityLocation})
     if (!destCityLocation.code) {
       destinationCityGeoLocation.push({
-        code: destinationCities[0][i].iataCode,
-        name: destinationCities[0][i].name,
+        code: destinationCities[i].iataCode,
+        name: destinationCities[i].name,
         lat: 9999,
         lon: 9999
       })
@@ -119,7 +119,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
 
 
       <section className='list-of-destination-city-names' id='footer'>
-        {(destinationCities.length > 0) && (destinationCities[0].map(city => {
+        {(destinationCities.length > 0) && (destinationCities.map(city => {
           /* console.log('cities in mapping destination cities: ', city) */
           return <p key={city.name} className='destination-city-name'>{city.name}</p>
         }))}
