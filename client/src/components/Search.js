@@ -83,9 +83,9 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     // -- Get destinations for each origin city and find common destinations
     Promise.all(promises)
       .then(results => {
-        // console.log('results from promise.all in handleSearch ftion: ', results);
+        console.log('results from promise.all in handleSearch ftion: ', results);
         let commonDestinations = findCommonArrayEls(results);
-        // console.log('common destinations in handleSearch ftion: ', commonDestinations[0]);
+        console.log('common destinations in handleSearch ftion: ', commonDestinations[0]);
         setDestinationCities(commonDestinations[0]);
         // TODO: all logic that if any result.status === 500, send an alert to try again
       })

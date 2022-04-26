@@ -3,7 +3,7 @@
 
 // -- Export function
 export const findCommonArrayEls = (arrOfArrs) => {
-  // console.log('is in findCommonArrayEls function', arrOfArrs);
+  console.log('is in findCommonArrayEls function', arrOfArrs);
   // console.log('length of arrOfArrs: ', arrOfArrs.length)
   const commonElsArr = [];
   if (arrOfArrs.length === 1) {
