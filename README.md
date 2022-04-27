@@ -5,9 +5,8 @@ MeetMeHalfWay is a site that lets you input up to six origin airport cities and 
 
 
 ## Built With
-
-Node + Express
-React.js
+Node + Express  return
+React.js  return
 
 Leaflet.js
 Amadeus for Developers API
@@ -23,9 +22,9 @@ Install npm packages with `npm install`
 Enter your API key and secret in /server/controllers/destinations.js  (pending to set up config.js file!!!)
 
 ### Run on localhost
-Install nodemon from root directory with `npm install nodemon`.
-Change directory to `/server` and run `nodemon index.js` to start the server.
-Change directory to `/client` and run `npm start` to launch the application in browser.
+Install nodemon from root directory with `npm install nodemon`
+Change directory to `/server` and run `nodemon index.js` to start the server
+Change directory to `/client` and run `npm start` to launch the application in browser
 
 
 ## Roadmap
