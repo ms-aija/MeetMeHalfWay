@@ -1,4 +1,4 @@
-/*esling-disable*/
+/*eslint-disable*/
 
 # MeetMeHalfWay
 MeetMeHalfWay is a site that lets you input up to six origin airport cities and search for common destinations served by direct flights. The site currently runs only on localhost.
