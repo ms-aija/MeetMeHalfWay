@@ -11,7 +11,6 @@ export const getDestinationCityList = (iataCode) => {
   .then((result) => {
     const destResponse = result.json();
     return destResponse;
-    // console.log('result in airportsService: ', destResponse)
   })
   .catch(err => console.error(err))
 }

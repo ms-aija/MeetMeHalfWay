@@ -12,10 +12,6 @@ const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }) => {
       el.country.toLowerCase().includes(lowerCaseOriginInput)
   })
   const shortlistFilteredAirports = filteredAirports.slice(0, 7);
-  // console.log({shortlistFilteredAirports});
-  // console.log({ allAirports });
-  // console.log({ filteredAirports });
-  // console.log({ shortlistFilteredAirports });
 
   return (
     <div className='OriginSearchItem'>

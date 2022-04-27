@@ -2,14 +2,12 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Icon } from 'leaflet';
 
 const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
-  // console.log('destination cities in searchResult component: ', destinationCities)
 
   // -- Create an array of origin airports with geo-location
   let originAirportGeoLocation = [];
   for (let originCode of originAirports) {
     let airportLocation = {};
     for (let airport of allAirports) {
-      // console.log({airport});
       if (airport.code === originCode) {
         airportLocation = {
           code: originCode,
@@ -21,19 +19,13 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
       }
     }
   }
-  // console.log({originAirportGeoLocation});
 
   // -- Create an array of destination cities with geo-location
   let destinationCityGeoLocation = [];
-  // console.log('destination cities for geolocation: ', destinationCities);
-  // console.log('destination cities length: ', destinationCities.length)
   let destCityLength = !destinationCities ? 0 : destinationCities.length
-  // console.log({destCityLength})
   for (let i = 0; i < destCityLength; i++) {
     let destCityLocation = {};
     for (let airport of allAirports) {
-      // console.log({airport});
-      // console.log('destCity in loop: ', destinationCities[0][i]);
       if (airport.code === destinationCities[i].iataCode) {
         destCityLocation = {
           code: airport.code,
@@ -44,7 +36,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
         destinationCityGeoLocation.push(destCityLocation)
       }
     }
-    // console.log({destCityLocation})
+
     if (!destCityLocation.code) {
       destinationCityGeoLocation.push({
         code: destinationCities[i].iataCode,
@@ -54,7 +46,6 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
       })
     }
   }
-  // console.log({ destinationCityGeoLocation });
 
   // -- Custom icons
   const originIcon = new Icon({
@@ -120,7 +111,6 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
 
       <section className='list-of-destination-city-names' id='footer'>
         {(destinationCities.length > 0) && (destinationCities.map(city => {
-          /* console.log('cities in mapping destination cities: ', city) */
           return <p key={city.name} className='destination-city-name'>{city.name}</p>
         }))}
       </section>

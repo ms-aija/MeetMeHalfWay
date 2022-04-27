@@ -17,7 +17,6 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       let counter = 1;
       for (let el of queryParamsArray) {
         if (el !== null) {
-          console.log({el})
           let city = {
             index: counter,
             itemId: `item${counter}`,
@@ -31,7 +30,6 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     }
     return initialState;
   })
-  console.log({cityComponents});
 
   const handleAddCity = () => {
     let counter = cityComponents.length + 1;
@@ -43,14 +41,10 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     }
     let cityComp = [...cityComponents];
     cityComp.push(city)
-    // console.log({cityComp})
     setCityComponents(cityComp);
   }
-  // console.log({ cityComponents })
 
   const handleRemoveCity = () => {
-    // let counter = cityComponents.length;
-    // console.log({ counter })
     let cityComp = [...cityComponents];
     cityComp.pop();
     setCityComponents(cityComp);
@@ -63,14 +57,12 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       promises.push(getDestinationCityList(document.getElementById(el.itemId).value));
       origins.push(document.getElementById(el.itemId).value);
     }
-    console.log({promises})
 
     // -- Reset destination city state to get rid of previous search results
     setDestinationCities([]);
     setOriginAirports(origins);
 
     // -- Update query params
-    console.log({ origins })
     let queryParamsObject = {}
     let counter = 1
     for (let el of origins) {
@@ -78,15 +70,12 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       counter++
       queryParamsObject[name] = el
     }
-    console.log({ queryParamsObject })
     setSearchParams(queryParamsObject);
 
     // -- Get destinations for each origin city and find common destinations
     Promise.all(promises)
       .then(results => {
-        console.log('results from promise.all in handleSearch ftion: ', results);
         let commonDestinations = findCommonArrayEls(results);
-        console.log('common destinations in handleSearch ftion: ', commonDestinations[0]);
         setDestinationCities(commonDestinations[0]);
         // TODO: all logic that if any result.status === 500, send an alert to try again
       })
@@ -109,11 +98,9 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
 
   return (
     <div className='Search'>
-      {/* <section className="origin-input-container"> */}
       <section className="origin-city-input-container">
         <div className="origin-input-cities">
           {cityComponents.map(el => {
-            console.log({el})
             return <OriginSearchItem
               key={el.index}
               allAirports={allAirports}
@@ -123,7 +110,6 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
             />
           })}
         </div>
-        {/* </section> */}
         <section className="add-remove-search-buttons">
           <>
             {(cityComponents.length >= 3) && <button className="search-button small-button" onClick={handleRemoveCity}>-</button>}

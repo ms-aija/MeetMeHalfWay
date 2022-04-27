@@ -3,17 +3,11 @@
 
 // -- Export function
 export const findCommonArrayEls = (arrOfArrs) => {
-  console.log('is in findCommonArrayEls function', arrOfArrs);
-  // console.log('length of arrOfArrs: ', arrOfArrs.length)
   const commonElsArr = [];
   if (arrOfArrs.length === 1) {
-    // console.log('is in findCommonArrayEls 1st if statement for array of single element');
     commonElsArr.push([...arrOfArrs[0]]);
   } else {
     let toDo = [...arrOfArrs];
-    console.log('toDo before while: ', toDo)
-    console.log('todo[0]', toDo[0], 'todo[0] length', toDo[0].length);
-    console.log('todo[0][0]', toDo[0][0], 'todo[0][0] length', toDo[0][0].length);
     while (toDo.length > 1) {
       toDo[0] = toDo[0].filter(function(o1) {
         return toDo[1].some(function(o2) {
@@ -21,28 +15,8 @@ export const findCommonArrayEls = (arrOfArrs) => {
         })
       })
       toDo.splice(1, 1);
-      // console.log('toDo end of cycle in While: ', toDo);
     }
     commonElsArr.push(toDo[0]);
   }
-  // console.log('common els in function: ', commonElsArr);
   return commonElsArr;
 }
-
-
-//-- TEST DATA (mock of data returned from API)
-// const arrOfArrs3 = [
-//   [
-//     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'ABZ' },
-//     { type: 'location', subtype: 'city', name: 'CITY2', iataCode: 'CDA' },
-//     { type: 'location', subtype: 'city', name: 'CITY3', iataCode: 'FGG' },
-//     { type: 'location', subtype: 'city', name: 'CITY4', iataCode: 'MNO' }
-//   ],
-//   [
-//     { type: 'location', subtype: 'city', name: 'ABERDEEN', iataCode: 'ABZ' },
-//     { type: 'location', subtype: 'city', name: 'CITY3', iataCode: 'FGG' },
-//     // { type: 'location', subtype: 'city', name: 'CITY4', iataCode: 'MNO' }
-//   ]
-// ]
-
-// console.log('result: ',findCommonArrayEls(arrOfArrs3));

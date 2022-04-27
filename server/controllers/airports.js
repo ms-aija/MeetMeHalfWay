@@ -5,13 +5,10 @@ const airportsData = require('../assets/airports.json');
 
 async function getAirportList(req, res) {
   try {
-    // console.log('is in getAirportList');
-    // console.log('airport data sample: ',airportsData.slice(0,2));
     const listOfAirports = [];
     const minDirectFlightsFromAirport = 30;
     // Create a list of airports containing only the chosen properties
     for (let element of airportsData) {
-      // console.log({element});
       if (element.direct_flights >= minDirectFlightsFromAirport) {
         itemToAdd = {
           code: element.code,

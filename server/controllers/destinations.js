@@ -6,25 +6,19 @@ const e = require('express');
 // import { client_secret } from './playground';
 
 const amadeus = new Amadeus({
-  clientId: 'YOUR_ID_HERE',
-  clientSecret: 'YOUR_SECRET_HERE'
+  clientId: 'JgyBXsowDIGaF00qL6HXSlrSEaEUQmIN',
+  clientSecret: 'OMpvzr55BWY4eRT8'
 });
 
 function getDestinationCityList(req, res) {
   amadeus.client.get('/v1/airport/direct-destinations', { departureAirportCode: req.params.id, max: 300 })
     .then(function (response) {
-      // console.log('res.body.data: ', response.body.data);
-      // console.log('res.result: ', response.result);
-      // console.log('res.data: ', response.data);
       res.json(response.data);
       res.status(200);
     })
     .catch(function (error) {
       res.status(500);
       console.error(error);
-      // console.log('error.response: ', err.response);
-      // console.log('error.response.request: ', err.response.request);
-      // console.log('error.code', err.code);
     })
 }
 
