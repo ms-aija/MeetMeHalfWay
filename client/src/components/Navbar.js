@@ -8,25 +8,23 @@ const Navbar = () => {
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (
-    <section className='Navbar'>
+    <section className="Navbar">
       <div className="navbar-title-animation">
-        <h1>MeetMeHalf<span>W</span>ay</h1>
+        <h1>
+          MeetMeHalf<span>W</span>ay
+        </h1>
         <div>
-          <Lottie
-            options={defaultOptions}
-            height={30}
-            width={123}
-          />
+          <Lottie options={defaultOptions} height={30} width={123} />
         </div>
       </div>
-      <p>Discover common destinations served by direct flights</p>
+      <p>Discover some common destinations served by direct flights</p>
     </section>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
