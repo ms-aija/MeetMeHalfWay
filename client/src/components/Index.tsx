@@ -3,17 +3,17 @@ import { useSearchParams } from 'react-router-dom';
 
 import { getAirportList } from '../services/airportsService';
 import { sortByDirectFlightCount } from '../utils/sort';
+import { Airports, Origin, Destination } from '../interfaces';
 
 import Navbar from './Navbar';
 import Search from './Search';
 import SearchResult from './SearchResult';
 
-
 // function App() {
 function Index() {
-  const [allAirports, setAllAirports] = useState([]);
-  const [originAirports, setOriginAirports] = useState([]);
-  const [destinationCities, setDestinationCities] = useState([]);
+  const [allAirports, setAllAirports] = useState<Airports[]>([]);
+  const [originAirports, setOriginAirports] = useState<Origin[]>([]);
+  const [destinationCities, setDestinationCities] = useState<Destination[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const origin1 = searchParams.get('origin1' || '');
@@ -27,21 +27,21 @@ function Index() {
   // -- Get list of all airports on initial page load
   useEffect(() => {
     getAirportList()
-      .then(result => {
+      .then((result) => {
         if (result.status === 500) {
           alert('Oops, something went wrong. Please try again');
         } else {
           return setAllAirports(sortByDirectFlightCount(result));
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
-      })
-  }, [])
+      });
+  }, []);
 
   return (
     <div className="App">
-      <div className='navbar-search-container'>
+      <div className="navbar-search-container">
         <Navbar />
         <Search
           allAirports={allAirports}

@@ -9,7 +9,7 @@ app.use(Express.json());
 app.use(cors());
 app.use(router);
 
-const PORT = 3005;
+const PORT = 3006;
 app.listen(PORT, () => {
-  console.log(`🎪 Server running on http://localhost/${PORT} 🎪`)
-})
+  console.log(`🎪 Server running on http://localhost/${PORT} 🎪`);
+});

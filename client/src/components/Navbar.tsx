@@ -1,7 +1,8 @@
+import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from '../lotties/airplane-dots.json';
 
-const Navbar = () => {
+function Navbar() {
   // -- Setup for Lottie
   const defaultOptions = {
     loop: true,
@@ -25,6 +26,6 @@ const Navbar = () => {
       <p>Discover some common destinations served by direct flights</p>
     </section>
   );
-};
+}
 
 export default Navbar;
