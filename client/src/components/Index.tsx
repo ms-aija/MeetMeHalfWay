@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { getAirportList } from '../services/airportsService';
 import { sortByDirectFlightCount } from '../utils/sort';
+import { Airports, Origin, Destination } from '../interfaces';
 
 import Navbar from './Navbar';
 import Search from './Search';
@@ -10,9 +11,9 @@ import SearchResult from './SearchResult';
 
 // function App() {
 function Index() {
-  const [allAirports, setAllAirports] = useState([]);
-  const [originAirports, setOriginAirports] = useState([]);
-  const [destinationCities, setDestinationCities] = useState([]);
+  const [allAirports, setAllAirports] = useState<Airports[]>([]);
+  const [originAirports, setOriginAirports] = useState<Origin[]>([]);
+  const [destinationCities, setDestinationCities] = useState<Destination[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const origin1 = searchParams.get('origin1' || '');
