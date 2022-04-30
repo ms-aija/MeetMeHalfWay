@@ -8,9 +8,9 @@ import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
   allAirports: Airports[];
-  setOriginAirports: Dispatch<SetStateAction<Origin[]>>;
+  setOriginAirports: Dispatch<SetStateAction<string[]>>;
   setDestinationCities: Dispatch<SetStateAction<Destination[]>>;
-  queryParamsArray: string[];
+  queryParamsArray: (string | null)[];
   setSearchParams: any;
 }
 
@@ -75,23 +75,24 @@ const Search = ({
     for (let el of cityComponents) {
       let HTMLel: HTMLelem = document.getElementById(el.itemId) as HTMLelem;
       console.log(el);
-      console.log(HTMLel);
+      console.log(HTMLel, 'HTML EL');
       promises.push(getDestinationCityList(HTMLel.value));
       origins.push(HTMLel.value);
     }
 
     // -- Reset destination city state to get rid of previous search results
     setDestinationCities([]);
-    // setOriginAirports(origins);
+    setOriginAirports(origins);
 
     // -- Update query params
-    let queryParamsObject = {};
+    let queryParamsObject: any = {};
     let counter = 1;
     for (let el of origins) {
       let name = `origin${counter}`;
       counter++;
-      // queryParamsObject[name] = el;
+      queryParamsObject[name] = el;
     }
+    console.log(queryParamsObject, 'QUERY PARAMS');
     setSearchParams(queryParamsObject);
 
     // -- Get destinations for each origin city and find common destinations

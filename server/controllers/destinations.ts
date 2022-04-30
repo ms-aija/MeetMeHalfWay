@@ -1,7 +1,7 @@
 // -- DESTINATIONS CONTROLLER
 // -- Destination data from Amadeus API
 const Amadeus = require('amadeus');
-const e = require('express');
+import e from 'express';
 // import { client_id } from './playground';
 // import { client_secret } from './playground';
 
@@ -10,17 +10,18 @@ const amadeus = new Amadeus({
   clientSecret: 'SgmPictEkG9D492W',
 });
 
-function getDestinationCityList(req, res) {
+export function getDestinationCityList(req: any, res: any) {
+  console.log(req, 'REQ', res, 'RES');
   amadeus.client
     .get('/v1/airport/direct-destinations', {
       departureAirportCode: req.params.id,
       max: 300,
     })
-    .then(function (response) {
+    .then(function (response: any) {
       res.json(response.data);
       res.status(200);
     })
-    .catch(function (error) {
+    .catch(function (error: any) {
       res.status(500);
       console.error(error);
     });
@@ -47,4 +48,4 @@ function getDestinationCityList(req, res) {
 //   }
 // }
 
-module.exports = { getDestinationCityList };
+// module.exports = { getDestinationCityList };

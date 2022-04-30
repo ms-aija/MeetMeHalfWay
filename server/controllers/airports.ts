@@ -1,16 +1,16 @@
 // AIRPORTS CONTROLLER
 
 // No DB or models. Data coming directly from a json file.
-const airportsData = require('../assets/airports.json');
+import airportsData from '../assets/airports.json';
 
-async function getAirportList(req, res) {
+export async function getAirportList(req: any, res: any) {
   try {
     const listOfAirports = [];
     const minDirectFlightsFromAirport = 30;
     // Create a list of airports containing only the chosen properties
     for (let element of airportsData) {
-      if (element.direct_flights >= minDirectFlightsFromAirport) {
-        itemToAdd = {
+      if (Number(element.direct_flights) >= minDirectFlightsFromAirport) {
+        let itemToAdd = {
           code: element.code,
           name: element.name,
           city: element.city,
@@ -18,8 +18,7 @@ async function getAirportList(req, res) {
           country: element.country,
           direct_flights: element.direct_flights,
           lat: element.lat,
-          lon: element.lon
-
+          lon: element.lon,
         };
         listOfAirports.push(itemToAdd);
       }
@@ -33,4 +32,4 @@ async function getAirportList(req, res) {
   }
 }
 
-module.exports = { getAirportList };
+// module.exports = { getAirportList };

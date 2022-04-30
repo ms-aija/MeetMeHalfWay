@@ -12,7 +12,7 @@ import SearchResult from './SearchResult';
 // function App() {
 function Index() {
   const [allAirports, setAllAirports] = useState<Airports[]>([]);
-  const [originAirports, setOriginAirports] = useState<Origin[]>([]);
+  const [originAirports, setOriginAirports] = useState<string[]>([]);
   const [destinationCities, setDestinationCities] = useState<Destination[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();

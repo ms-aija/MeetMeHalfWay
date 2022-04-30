@@ -9,15 +9,22 @@ export interface Airports {
   lon: string;
 }
 
-export interface Origin {
+export interface Destination {
   type: string;
   subtype: string;
   name: string;
   iataCode: string;
 }
 
-export interface Destination {
+export interface Origin {
   City: string;
   Country: string;
   Code: string;
+}
+
+export interface AirportLocation {
+  code: string;
+  name: string;
+  lat: string;
+  lon: string;
 }

@@ -1,40 +1,59 @@
 import { useState } from 'react';
+import { Airports, Destination, Origin } from '../interfaces';
 
-const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }) => {
+interface Props {
+  allAirports: Airports[];
+  listId: string;
+  itemId: string;
+  listDefaultVal: string;
+}
+
+const OriginSearchItem = ({
+  allAirports,
+  listId,
+  itemId,
+  listDefaultVal,
+}: Props) => {
   const [originInput, setOriginInput] = useState('');
 
-  const filteredAirports = allAirports.filter(el => {
+  const filteredAirports = allAirports.filter((el) => {
     const lowerCaseOriginInput = originInput.toLowerCase();
-    return el.code.toLowerCase().includes(lowerCaseOriginInput) ||
+    return (
+      el.code.toLowerCase().includes(lowerCaseOriginInput) ||
       el.name.toLowerCase().includes(lowerCaseOriginInput) ||
       el.city.toLowerCase().includes(lowerCaseOriginInput) ||
       el.state.toLowerCase().includes(lowerCaseOriginInput) ||
       el.country.toLowerCase().includes(lowerCaseOriginInput)
-  })
+    );
+  });
   const shortlistFilteredAirports = filteredAirports.slice(0, 7);
 
   return (
-    <div className='OriginSearchItem'>
+    <div className="OriginSearchItem">
       <label>
         <input
           defaultValue={listDefaultVal}
           id={itemId}
-          placeholder='Airport/City...'
+          placeholder="Airport/City..."
           list={listId}
-          name='airport-city'
+          name="airport-city"
           onChange={(e) => {
-            setOriginInput(e.target.value)
-          }
-          }
+            setOriginInput(e.target.value);
+          }}
         />
       </label>
       <datalist id={listId}>
-        {shortlistFilteredAirports.map(airport => {
-          return <option key={airport.code} value={airport.code}>{`${airport.name} (${airport.city}, ${airport.country})`}</option>
+        {shortlistFilteredAirports.map((airport) => {
+          return (
+            <option
+              key={airport.code}
+              value={airport.code}
+            >{`${airport.name} (${airport.city}, ${airport.country})`}</option>
+          );
         })}
       </datalist>
     </div>
-  )
-}
+  );
+};
 
-export default OriginSearchItem
+export default OriginSearchItem;

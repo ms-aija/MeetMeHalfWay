@@ -1,7 +1,7 @@
-const Express = require('express');
-const cors = require('cors');
+import Express from 'express';
+import cors from 'cors';
 
-const router = require('./router');
+import router from './router';
 
 const app = Express();
 
@@ -9,7 +9,7 @@ app.use(Express.json());
 app.use(cors());
 app.use(router);
 
-const PORT = 3006;
+const PORT = 3007;
 app.listen(PORT, () => {
   console.log(`🎪 Server running on http://localhost/${PORT} 🎪`);
 });
