@@ -11,7 +11,6 @@ const amadeus = new Amadeus({
 });
 
 export function getDestinationCityList(req: any, res: any) {
-  console.log(req, 'REQ', res, 'RES');
   amadeus.client
     .get('/v1/airport/direct-destinations', {
       departureAirportCode: req.params.id,

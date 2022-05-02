@@ -23,19 +23,11 @@ const SearchResult = ({
 }: Props) => {
   // -- Create an array of origin airports with geo-location
   let originAirportGeoLocation: Interface[] = [];
-  // console.log(
-  //   originAirportGeoLocation,
-  //   'ORIGIN AIRPORT',
-  //   originAirports,
-  //   'ORIGIN AIRPORTS'
-  // );
-  console.log(originAirports, 'AIRPORTS DAMNIT');
+
   for (let originCode of originAirports) {
-    console.log(originCode, 'ORIGIN CODE');
     let airportLocation: Interface;
 
     for (let airport of allAirports) {
-      console.log(originCode, 'ORIGIN FAILURE');
       if (airport.code === originCode) {
         airportLocation = {
           code: originCode,
@@ -45,7 +37,6 @@ const SearchResult = ({
         };
         originAirportGeoLocation.push(airportLocation);
       } else {
-        // console.log(airport.code, 'AIRPORT FAILURE');
       }
     }
   }
@@ -91,7 +82,6 @@ const SearchResult = ({
   });
 
   // -- Dev
-  console.log(originAirportGeoLocation, 'ORIGINAL AIRPORT');
   return (
     <div className="SearchResult">
       <MapContainer center={[37, 10]} zoom={3} scrollWheelZoom={true}>
@@ -102,7 +92,6 @@ const SearchResult = ({
 
         {/* Origin airport markers */}
         {originAirportGeoLocation.map((origin) => {
-          console.log(origin, 'ORIGIN');
           return (
             <Marker
               key={origin.code}
@@ -118,8 +107,6 @@ const SearchResult = ({
 
         {/* Destination city markers */}
         {destinationCityGeoLocation.map((destination) => {
-          // console.log(destination, 'destination');
-
           return (
             <Marker
               key={destination.name}

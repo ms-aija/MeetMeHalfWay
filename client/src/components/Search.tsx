@@ -74,8 +74,7 @@ const Search = ({
     let origins: string[] = [];
     for (let el of cityComponents) {
       let HTMLel: HTMLelem = document.getElementById(el.itemId) as HTMLelem;
-      console.log(el);
-      console.log(HTMLel, 'HTML EL');
+
       promises.push(getDestinationCityList(HTMLel.value));
       origins.push(HTMLel.value);
     }
@@ -92,7 +91,6 @@ const Search = ({
       counter++;
       queryParamsObject[name] = el;
     }
-    console.log(queryParamsObject, 'QUERY PARAMS');
     setSearchParams(queryParamsObject);
 
     // -- Get destinations for each origin city and find common destinations
