@@ -10,7 +10,10 @@ const amadeus = new Amadeus({
   clientSecret: 'SgmPictEkG9D492W',
 });
 
-export function getDestinationCityList(req: any, res: any) {
+export function getDestinationCityList(
+  req: { params: { id: any } },
+  res: { json: (arg0: any) => void; status: (arg0: number) => void }
+) {
   amadeus.client
     .get('/v1/airport/direct-destinations', {
       departureAirportCode: req.params.id,

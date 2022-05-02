@@ -1,8 +1,10 @@
 import { Airports } from '../interfaces';
 
 export const sortByDirectFlightCount = (arr: Airports[]) => {
+  console.log(arr);
   const sortedArr = arr.sort(
-    (a: any, b: any) => b.direct_flights - a.direct_flights
+    (a, b) => Number(b.direct_flights) - Number(a.direct_flights)
   );
+  console.log(sortedArr, 'sorted');
   return sortedArr;
 };
