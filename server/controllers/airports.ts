@@ -1,9 +1,9 @@
 // AIRPORTS CONTROLLER
-
+import e from 'express';
 // No DB or models. Data coming directly from a json file.
 import airportsData from '../assets/airports.json';
 
-export async function getAirportList(req: any, res: any) {
+export async function getAirportList(req: e.Request, res: e.Response) {
   try {
     const listOfAirports = [];
     const minDirectFlightsFromAirport = 30;
