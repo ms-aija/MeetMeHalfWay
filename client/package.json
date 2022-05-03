@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.7.9",
-    "@types/react-lottie": "^1.2.6"
+    "@types/react-lottie": "^1.2.6",
+    "cypress": "^9.6.0"
   }
 }

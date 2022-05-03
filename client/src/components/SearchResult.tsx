@@ -69,8 +69,8 @@ const SearchResult = ({
 
   // -- Custom icons
   const originIcon = new Icon({
-    iconUrl: '/icons8-location-64.png',
-    iconSize: [33, 33],
+    iconUrl: '/location-icon.png',
+    iconSize: [25, 40],
     // iconAnchor: [1, 1],
     // popupAnchor: [-0, -76]
   });
@@ -84,7 +84,12 @@ const SearchResult = ({
   // -- Dev
   return (
     <div className="SearchResult">
-      <MapContainer center={[37, 10]} zoom={3} scrollWheelZoom={true}>
+      <MapContainer
+        center={[37, 10]}
+        zoom={3}
+        scrollWheelZoom={true}
+        className="map-container"
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

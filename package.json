@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/ms-aija/MeetMeHalfWay#readme",
   "devDependencies": {
+    "cypress": "^9.6.0",
     "eslint": "^8.14.0",
-    "eslint-plugin-react": "^7.29.4"
+    "eslint-plugin-react": "^7.29.4",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "@types/express": "^4.17.13",

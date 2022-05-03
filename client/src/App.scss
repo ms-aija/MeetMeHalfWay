@@ -4,11 +4,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&family=Righteous&family=Roboto:wght@300;400&family=Space+Mono&family=Ubuntu&family=Ubuntu+Mono&display=swap');
 
-$color-darkest: #8A4B63;
-$color-dark: #8F668B;
-$color-medium: #8D83AC;
-$color-light: #8C9FC3;
-$color-lightest: #94BAD3;
+$color-darkest: #8a4b63;
+$color-dark: #8f668b;
+$color-medium: #8d83ac;
+$color-light: #8c9fc3;
+$color-lightest: #94bad3;
 
 :root {
   font-family: 'Roboto', sans-serif;
@@ -30,7 +30,14 @@ body {
 }
 
 .navbar-search-container {
-  background-image: linear-gradient(to bottom, #91bac5, #7ca5b0, #68909b, #547c87, #416973);
+  background-image: linear-gradient(
+    to bottom,
+    #91bac5,
+    #7ca5b0,
+    #68909b,
+    #547c87,
+    #416973
+  );
   border-bottom: 3px solid whitesmoke;
   border-top: 2px solid whitesmoke;
 }
@@ -47,9 +54,9 @@ body {
 }
 
 .navbar-title-animation {
- display: flex;
- flex-direction: row;
- align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .Navbar h1 {
@@ -57,7 +64,7 @@ body {
   font-size: 2rem;
   margin: 0;
   padding: 5px;
-  color: #002F38;
+  color: #002f38;
   margin-right: 10px;
 }
 
@@ -146,7 +153,7 @@ button {
 
 .search-button {
   height: 37px;
-  background-color: #91BAC5;
+  background-color: #91bac5;
   opacity: 0.8;
   border-radius: 8px;
   border-width: 0;
@@ -200,15 +207,13 @@ button {
   font-size: 0.7rem;
 }
 
-
 .leaflet-container {
   width: 100%;
-  height: 80vh;
+  height: 77vh;
   z-index: 1;
   // height: 325px;
   // margin-bottom: 20px;
 }
-
 
 .map-popup-flight-list-item {
   font-size: 0.6rem;
@@ -227,10 +232,16 @@ button {
   position: absolute;
   bottom: 10px;
   width: 100%;
-  border: 1px solid red;
+  // border: 1px solid red;
   z-index: 2;
   width: 95vw;
   background-color: hsla(40, 26%, 93%, 0.5);
-  border: 1px solid whitesmoke;
+  // border: 1px solid whitesmoke;
   border-radius: 3px;
+}
+
+.map-container {
+  height: 77vh;
+}
+.leaflet-marker-icon {
 }

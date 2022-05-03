@@ -24,6 +24,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/supertest": "^2.0.12",
+    "cypress": "^9.6.0",
     "supertest": "^6.2.3"
   }
 }

@@ -137,7 +137,7 @@ const Search = ({
           <>
             {cityComponents.length >= 3 && (
               <button
-                className="search-button small-button"
+                className="search-button small-button search-minus"
                 onClick={handleRemoveCity}
               >
                 -
