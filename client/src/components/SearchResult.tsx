@@ -1,12 +1,15 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
-import { Airports, Destination, Origin } from '../interfaces';
+import { Airports, Destination } from '../interfaces';
 
 interface Props {
   allAirports: Airports[];
   originAirports: string[];
   destinationCities: Destination[];
-  // airportLocation: AirportLocation;
+  latCen: number;
+  lonCen: number;
+  setLatCen: any;
+  setLonCen: any;
 }
 
 interface Interface {
@@ -20,8 +23,9 @@ const SearchResult = ({
   originAirports,
   allAirports,
   destinationCities,
+  latCen,
+  lonCen,
 }: Props) => {
-  // -- Create an array of origin airports with geo-location
   let originAirportGeoLocation: Interface[] = [];
 
   for (let originCode of originAirports) {
@@ -41,7 +45,6 @@ const SearchResult = ({
     }
   }
 
-  // -- Create an array of destination cities with geo-location
   let destinationCityGeoLocation: Interface[] = [];
   let destCityLength = !destinationCities ? 0 : destinationCities.length;
   for (let i = 0; i < destCityLength; i++) {
@@ -70,32 +73,32 @@ const SearchResult = ({
   // -- Custom icons
   const originIcon = new Icon({
     iconUrl: '/location-icon.png',
-    iconSize: [25, 40],
-    // iconAnchor: [1, 1],
-    // popupAnchor: [-0, -76]
+    iconSize: [17, 28],
   });
   const destIcon = new Icon({
     iconUrl: '/icons8-select-24.png',
     iconSize: [17, 17],
-    // iconAnchor: [22, 94],
-    // popupAnchor: [-0, -76]
   });
 
-  // -- Dev
   return (
     <div className="SearchResult">
       <MapContainer
         center={[37, 10]}
-        zoom={3}
+        zoom={2}
         scrollWheelZoom={true}
         className="map-container"
+        minZoom={2}
+        maxBounds={[
+          [80, -190],
+          [-75, 190],
+        ]}
+        maxZoom={6}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
         />
 
-        {/* Origin airport markers */}
         {originAirportGeoLocation.map((origin) => {
           return (
             <Marker
@@ -110,7 +113,6 @@ const SearchResult = ({
           );
         })}
 
-        {/* Destination city markers */}
         {destinationCityGeoLocation.map((destination) => {
           return (
             <Marker

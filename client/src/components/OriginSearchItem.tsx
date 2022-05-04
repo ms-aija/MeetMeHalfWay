@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Airports, Destination, Origin } from '../interfaces';
+import { Airports } from '../interfaces';
 
 interface Props {
   allAirports: Airports[];

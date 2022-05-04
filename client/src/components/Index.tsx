@@ -3,13 +3,12 @@ import { useSearchParams } from 'react-router-dom';
 
 import { getAirportList } from '../services/airportsService';
 import { sortByDirectFlightCount } from '../utils/sort';
-import { Airports, Origin, Destination } from '../interfaces';
+import { Airports, Destination } from '../interfaces';
 
 import Navbar from './Navbar';
 import Search from './Search';
 import SearchResult from './SearchResult';
 
-// function App() {
 function Index() {
   const [allAirports, setAllAirports] = useState<Airports[]>([]);
   const [originAirports, setOriginAirports] = useState<string[]>([]);
@@ -23,6 +22,8 @@ function Index() {
   const origin5 = searchParams.get('origin5' || '');
   const origin6 = searchParams.get('origin6' || '');
   let queryParamsArray = [origin1, origin2, origin3, origin4, origin5, origin6];
+  const [latCen, setLatCen] = useState(37);
+  const [lonCen, setLonCen] = useState(10);
 
   // -- Get list of all airports on initial page load
   useEffect(() => {
@@ -49,12 +50,18 @@ function Index() {
           setOriginAirports={setOriginAirports}
           queryParamsArray={queryParamsArray}
           setSearchParams={setSearchParams}
+          setLatCen={setLatCen}
+          setLonCen={setLonCen}
         />
       </div>
       <SearchResult
         destinationCities={destinationCities}
         originAirports={originAirports}
         allAirports={allAirports}
+        latCen={latCen}
+        lonCen={lonCen}
+        setLatCen={setLatCen}
+        setLonCen={setLonCen}
       />
     </div>
   );

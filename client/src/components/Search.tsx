@@ -2,8 +2,7 @@ import OriginSearchItem from './OriginSearchItem';
 import { useState, useEffect } from 'react';
 import { getDestinationCityList } from '../services/airportsService';
 import { findCommonArrayEls } from '../utils/findCommon';
-// import { Button } from 'react-bootstrap';
-import { Airports, Origin, Destination } from '../interfaces';
+import { Airports, Destination } from '../interfaces';
 import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
@@ -12,6 +11,8 @@ interface Props {
   setDestinationCities: Dispatch<SetStateAction<Destination[]>>;
   queryParamsArray: (string | null)[];
   setSearchParams: any;
+  setLatCen: any;
+  setLonCen: any;
 }
 
 interface HTMLelem extends HTMLElement {
@@ -24,6 +25,8 @@ const Search = ({
   setDestinationCities,
   queryParamsArray,
   setSearchParams,
+  setLatCen,
+  setLonCen,
 }: Props) => {
   const [cityComponents, setCityComponents] = useState(() => {
     let initialState = [];
@@ -72,18 +75,20 @@ const Search = ({
   const handleSearch = () => {
     let promises = [];
     let origins: string[] = [];
+
     for (let el of cityComponents) {
       let HTMLel: HTMLelem = document.getElementById(el.itemId) as HTMLelem;
 
       promises.push(getDestinationCityList(HTMLel.value));
       origins.push(HTMLel.value);
+      console.log(origins, 'ORIGINS SEARCH HERE');
     }
 
-    // -- Reset destination city state to get rid of previous search results
     setDestinationCities([]);
+    console.log(origins, 'ORIGINS AFTER HERE');
+
     setOriginAirports(origins);
 
-    // -- Update query params
     let queryParamsObject: any = {};
     let counter = 1;
     for (let el of origins) {
@@ -93,12 +98,10 @@ const Search = ({
     }
     setSearchParams(queryParamsObject);
 
-    // -- Get destinations for each origin city and find common destinations
     Promise.all(promises)
       .then((results) => {
         let commonDestinations = findCommonArrayEls(results);
         setDestinationCities(commonDestinations[0]);
-        // TODO: all logic that if any result.status === 500, send an alert to try again
       })
       .catch((err) => console.error(err));
   };
@@ -108,10 +111,7 @@ const Search = ({
       queryParamsArray[0] !== null ||
       queryParamsArray[1] !== null ||
       queryParamsArray[2] !== null ||
-      queryParamsArray[3] !== null ||
-      queryParamsArray[4] !== null ||
-      queryParamsArray[5] !== null ||
-      queryParamsArray[6] !== null
+      queryParamsArray[3] !== null
     ) {
       handleSearch();
     }
@@ -143,7 +143,7 @@ const Search = ({
                 -
               </button>
             )}
-            {cityComponents.length >= 2 && cityComponents.length <= 5 && (
+            {cityComponents.length >= 2 && cityComponents.length <= 3 && (
               <button
                 className="search-button small-button"
                 onClick={handleAddCity}
