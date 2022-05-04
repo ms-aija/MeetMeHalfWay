@@ -26,7 +26,7 @@ const OriginSearchItem = ({
       el.country.toLowerCase().includes(lowerCaseOriginInput)
     );
   });
-  const shortlistFilteredAirports = filteredAirports.slice(0, 7);
+  const shortlistFilteredAirports = filteredAirports;
 
   return (
     <div className="OriginSearchItem">
