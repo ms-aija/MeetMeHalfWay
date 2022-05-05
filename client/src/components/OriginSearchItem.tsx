@@ -32,6 +32,7 @@ const OriginSearchItem = ({
     <div className="OriginSearchItem">
       <label>
         <input
+          className="search-form"
           defaultValue={listDefaultVal}
           id={itemId}
           placeholder="Airport/City..."

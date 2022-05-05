@@ -6,8 +6,8 @@ import e from 'express';
 // import { client_secret } from './playground';
 
 const amadeus = new Amadeus({
-  clientId: 'BpfL9bHF42njMFmGHB9aV63aawW9aCJZ',
-  clientSecret: 'SgmPictEkG9D492W',
+  clientId: 'GS5WOxC6DvKVBkWDPE4piA7xhckOFITl',
+  clientSecret: 'vKDjDmQfpWHA5PAH',
 });
 
 export function getDestinationCityList(req: e.Request, res: e.Response) {

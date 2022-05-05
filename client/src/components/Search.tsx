@@ -9,10 +9,9 @@ interface Props {
   allAirports: Airports[];
   setOriginAirports: Dispatch<SetStateAction<string[]>>;
   setDestinationCities: Dispatch<SetStateAction<Destination[]>>;
+  setBaseZoom: any;
   queryParamsArray: (string | null)[];
   setSearchParams: any;
-  setLatCen: any;
-  setLonCen: any;
 }
 
 interface HTMLelem extends HTMLElement {
@@ -23,10 +22,9 @@ const Search = ({
   allAirports,
   setOriginAirports,
   setDestinationCities,
+  setBaseZoom,
   queryParamsArray,
   setSearchParams,
-  setLatCen,
-  setLonCen,
 }: Props) => {
   const [cityComponents, setCityComponents] = useState(() => {
     let initialState = [];
@@ -69,23 +67,25 @@ const Search = ({
   const handleRemoveCity = () => {
     let cityComp = [...cityComponents];
     cityComp.pop();
+
+    // setSearchParams((prev) => [prev);
     setCityComponents(cityComp);
+    setOriginAirports((prev) => prev.slice(0, -1));
   };
 
   const handleSearch = () => {
     let promises = [];
     let origins: string[] = [];
+    setBaseZoom(2);
 
     for (let el of cityComponents) {
       let HTMLel: HTMLelem = document.getElementById(el.itemId) as HTMLelem;
 
       promises.push(getDestinationCityList(HTMLel.value));
       origins.push(HTMLel.value);
-      console.log(origins, 'ORIGINS SEARCH HERE');
     }
 
     setDestinationCities([]);
-    console.log(origins, 'ORIGINS AFTER HERE');
 
     setOriginAirports(origins);
 

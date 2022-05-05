@@ -6,10 +6,7 @@ interface Props {
   allAirports: Airports[];
   originAirports: string[];
   destinationCities: Destination[];
-  latCen: number;
-  lonCen: number;
-  setLatCen: any;
-  setLonCen: any;
+  baseZoom: number;
 }
 
 interface Interface {
@@ -23,8 +20,7 @@ const SearchResult = ({
   originAirports,
   allAirports,
   destinationCities,
-  latCen,
-  lonCen,
+  baseZoom,
 }: Props) => {
   let originAirportGeoLocation: Interface[] = [];
 
@@ -84,7 +80,7 @@ const SearchResult = ({
     <div className="SearchResult">
       <MapContainer
         center={[37, 10]}
-        zoom={2}
+        zoom={baseZoom}
         scrollWheelZoom={true}
         className="map-container"
         minZoom={2}
