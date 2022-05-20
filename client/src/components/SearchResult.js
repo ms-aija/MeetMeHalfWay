@@ -61,9 +61,6 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
     // popupAnchor: [-0, -76]
   })
 
-
-  // -- Dev
-
   return (
     <div className='SearchResult'>
 

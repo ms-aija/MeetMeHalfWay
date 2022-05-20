@@ -10,7 +10,7 @@ async function getAirportList(req, res) {
     // Create a list of airports containing only the chosen properties
     for (let element of airportsData) {
       if (element.direct_flights >= minDirectFlightsFromAirport) {
-        itemToAdd = {
+        const itemToAdd = {
           code: element.code,
           name: element.name,
           city: element.city,

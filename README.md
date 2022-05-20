@@ -1,14 +1,12 @@
-/*eslint-disable*/
-
-# MeetMeHalfWay
-MeetMeHalfWay is a site that lets you input up to six origin airport cities and search for common destinations served by direct flights. The site currently runs only on localhost.
+# MeetMeHalfWay - find destinations that are only one flight away from all the origin cities
+The app lets you input up to six origin airport cities and search for common destinations served by direct flights.
 
 ![Homepage!](/assets/MeetMeHalfWay-Screenshot.jpg "Homepage")
 
 
 ## Built With
 * Node + Express
-* React.js
+* React
 * Leaflet.js
 * Amadeus for Developers API
 
@@ -18,14 +16,18 @@ MeetMeHalfWay is a site that lets you input up to six origin airport cities and 
 Get a free account from [Amadeus for Developers](https://developers.amadeus.com/) and create a Self-Service app to get your API key and API secret.
 
 ### Installation
-* Clone the repo
+* Fork and clone the repo
 * Install npm packages with `npm install`
-* Enter your API key and secret in /server/controllers/destinations.js  (pending to set up config.js file!!!)
+* Add a `.env` file in the `/server` folder with your Amadeus API keys and secrets
+```
+# AMADEUS API
+CLIENT_ID=
+CLIENT_SECRET=
+```
 
 ### Run on localhost
-* Install nodemon from root directory with `npm install nodemon`
-* Change directory to `/server` and run `nodemon index.js` to start the server
-* Change directory to `/client` and run `npm start` to launch the application in browser
+* To start the server run `npm run start` from the `/server` folder
+* To launch the application in browser run `npm start` from the `/client` folder
 
 
 ## Roadmap
