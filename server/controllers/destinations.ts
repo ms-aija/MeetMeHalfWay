@@ -5,7 +5,7 @@ import { AmadeusDestinationResult, AmadeusDestinationError } from 'amadeus'
 import Express from 'express';
 
 
-const amadeus = new Amadeus({
+const amadeus = new (Amadeus as any)({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   hostname: 'test'

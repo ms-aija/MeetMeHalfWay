@@ -1,4 +1,6 @@
 declare module 'amadeus' {
+
+  // Destination successful response type definition
   interface AmadeusDestinationSelf {
     self: string
   }
@@ -21,6 +23,7 @@ declare module 'amadeus' {
     data: AmadeusDestinationCity[]
   }
 
+  // Destination error response type definition
   interface AmadeusDestinationErrorSource {
     parameter: string
     pointer: string
