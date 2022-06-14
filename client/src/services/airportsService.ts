@@ -6,7 +6,7 @@ export const getAirportList = () => {
   .catch(err => console.error(err))
 }
 
-export const getDestinationCityList = (iataCode) => {
+export const getDestinationCityList = (iataCode: string) => {
   return fetch(`${BASE_URL}/destinations/${iataCode}`)
   .then((result) => {
     const destResponse = result.json();

@@ -2,9 +2,10 @@ import OriginSearchItem from "./OriginSearchItem";
 import { useState, useEffect } from "react";
 import { getDestinationCityList } from "../services/airportsService";
 import { findCommonArrayEls } from "../utils/findCommon";
+import { Airport } from "../interfaces/Airports";
 // import { Button } from 'react-bootstrap';
 
-const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryParamsArray, setSearchParams }) => {
+const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryParamsArray, setSearchParams }: SearchProps) => {
 
   const [cityComponents, setCityComponents] = useState(() => {
     let initialState = [];
@@ -54,7 +55,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     let promises = [];
     let origins = [];
     for (let el of cityComponents) {
-      promises.push(getDestinationCityList(document.getElementById(el.itemId).value));
+      promises.push(getDestinationCityList(document.getElementById(el!.itemId).value));
       origins.push(document.getElementById(el.itemId).value);
     }
 
@@ -121,6 +122,14 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
       </section>
     </div>
   )
+}
+
+type SearchProps = {
+  allAirports: Airport[]
+  setOriginAirports(arg: string[]): void
+  setDestinationCities(arg: string[]): void
+  queryParamsArray: string[]
+  setSearchParams(arg: string[]): void
 }
 
 export default Search
