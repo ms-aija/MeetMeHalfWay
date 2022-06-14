@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Airport } from '../interfaces/Airports';
 
 const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }) => {
   const [originInput, setOriginInput] = useState('');
