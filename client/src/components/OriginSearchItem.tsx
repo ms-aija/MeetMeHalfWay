@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Airport } from '../interfaces/Airports';
 
-const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }) => {
+const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }: OriginSearchItemProps) => {
   const [originInput, setOriginInput] = useState('');
 
   const filteredAirports = allAirports.filter(el => {
@@ -9,7 +9,7 @@ const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }) => {
     return el.code.toLowerCase().includes(lowerCaseOriginInput) ||
       el.name.toLowerCase().includes(lowerCaseOriginInput) ||
       el.city.toLowerCase().includes(lowerCaseOriginInput) ||
-      el.state.toLowerCase().includes(lowerCaseOriginInput) ||
+      el.state?.toLowerCase().includes(lowerCaseOriginInput) ||
       el.country.toLowerCase().includes(lowerCaseOriginInput)
   })
   const shortlistFilteredAirports = filteredAirports.slice(0, 7);
@@ -30,12 +30,19 @@ const OriginSearchItem = ({ allAirports, listId, itemId, listDefaultVal }) => {
         />
       </label>
       <datalist id={listId}>
-        {shortlistFilteredAirports.map(airport => {
+        {shortlistFilteredAirports.map((airport) => {
           return <option key={airport.code} value={airport.code}>{`${airport.name} (${airport.city}, ${airport.country})`}</option>
         })}
       </datalist>
     </div>
   )
+}
+
+type OriginSearchItemProps = {
+  allAirports: Airport[]
+  listId: string
+  itemId: string
+  listDefaultVal: string
 }
 
 export default OriginSearchItem

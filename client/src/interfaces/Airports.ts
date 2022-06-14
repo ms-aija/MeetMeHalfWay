@@ -4,7 +4,7 @@ export interface Airport {
   lon: number
   name: string
   city: string
-  state: string | null
+  state?: string | null
   country: string
   woeid?: string
   tz?: string
