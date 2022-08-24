@@ -2,15 +2,15 @@
 // const findCommonArrayEls = (arrOfArrs) => {
 
 // -- Export function
-export const findCommonArrayEls = (arrOfArrs) => {
+export const findCommonArrayEls = (arrOfArrs: any[]) => {
   const commonElsArr = [];
   if (arrOfArrs.length === 1) {
     commonElsArr.push([...arrOfArrs[0]]);
   } else {
     let toDo = [...arrOfArrs];
     while (toDo.length > 1) {
-      toDo[0] = toDo[0].filter(function(o1) {
-        return toDo[1].some(function(o2) {
+      toDo[0] = toDo[0].filter(function(o1: any) {
+        return toDo[1].some(function(o2: any) {
           return o1.iataCode === o2.iataCode
         })
       })

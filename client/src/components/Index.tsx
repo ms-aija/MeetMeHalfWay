@@ -4,6 +4,9 @@ import { useSearchParams } from 'react-router-dom';
 import { getAirportList } from '../services/airportsService';
 import { sortByDirectFlightCount } from '../utils/sort';
 
+import { Airport } from '../interfaces/Airports';
+import { AmadeusDestinationResult } from '../interfaces/DestinationCities';
+
 import Navbar from './Navbar';
 import Search from './Search';
 import SearchResult from './SearchResult';
@@ -11,9 +14,9 @@ import SearchResult from './SearchResult';
 
 // function App() {
 function Index() {
-  const [allAirports, setAllAirports] = useState([]);
-  const [originAirports, setOriginAirports] = useState([]);
-  const [destinationCities, setDestinationCities] = useState([]);
+  const [allAirports, setAllAirports] = useState<Airport[]>([]);
+  const [originAirports, setOriginAirports] = useState<Airport[]>([]);
+  const [destinationCities, setDestinationCities] = useState<AmadeusDestinationResult[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const origin1 = searchParams.get('origin1' || '');
@@ -22,7 +25,7 @@ function Index() {
   const origin4 = searchParams.get('origin4' || '');
   const origin5 = searchParams.get('origin5' || '');
   const origin6 = searchParams.get('origin6' || '');
-  let queryParamsArray = [origin1, origin2, origin3, origin4, origin5, origin6];
+  let queryParamsArray: (string | null )[] = [origin1, origin2, origin3, origin4, origin5, origin6];
 
   // -- Get list of all airports on initial page load
   useEffect(() => {

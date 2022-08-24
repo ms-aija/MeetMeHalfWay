@@ -1,6 +1,6 @@
 declare module 'amadeus' {
 
-  // Destination successful response type definition
+  // (1) Destination successful response type definition
   interface AmadeusDestinationSelf {
     self: string
   }
@@ -17,13 +17,13 @@ declare module 'amadeus' {
     name: string
     iataCode: string
   }
-
+  // Use this interface in code for destination result
   interface AmadeusDestinationResult {
     meta: AmadeusDestinationMeta
     data: AmadeusDestinationCity[]
   }
 
-  // Destination error response type definition
+  // (2) Destination error response type definition
   interface AmadeusDestinationErrorSource {
     parameter: string
     pointer: string

@@ -1,4 +1,4 @@
-export const sortByDirectFlightCount = (arr) => {
-  const sortedArr = arr.sort((a,b) => b.direct_flights - a.direct_flights);
+export const sortByDirectFlightCount = (arr: any[]) => {
+  const sortedArr = arr.sort((a: any,b: any) => b.direct_flights - a.direct_flights);
   return sortedArr;
 }
