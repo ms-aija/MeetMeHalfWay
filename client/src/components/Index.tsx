@@ -5,7 +5,7 @@ import { getAirportList } from '../services/airportsService';
 import { sortByDirectFlightCount } from '../utils/sort';
 
 import { Airport } from '../interfaces/Airports';
-import { AmadeusDestinationResult } from '../interfaces/DestinationCities';
+import { AmadeusDestinationCity } from '../interfaces/DestinationCities';
 
 import Navbar from './Navbar';
 import Search from './Search';
@@ -15,8 +15,8 @@ import SearchResult from './SearchResult';
 // function App() {
 function Index() {
   const [allAirports, setAllAirports] = useState<Airport[]>([]);
-  const [originAirports, setOriginAirports] = useState<Airport[]>([]);
-  const [destinationCities, setDestinationCities] = useState<AmadeusDestinationResult[]>([]);
+  const [originAirports, setOriginAirports] = useState<string[]>([]);
+  const [destinationCities, setDestinationCities] = useState<AmadeusDestinationCity[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const origin1 = searchParams.get('origin1' || '');

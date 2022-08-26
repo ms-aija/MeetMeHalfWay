@@ -9,7 +9,7 @@ interface AmadeusDestinationMeta {
   links: AmadeusDestinationSelf
 }
 
-interface AmadeusDestinationCity {
+export interface AmadeusDestinationCity {
   type: string
   subtype: string
   name: string
