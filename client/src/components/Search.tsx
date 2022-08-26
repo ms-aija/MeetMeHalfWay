@@ -1,8 +1,12 @@
 import OriginSearchItem from "./OriginSearchItem";
 import { useState, useEffect } from "react";
+
 import { getDestinationCityList } from "../services/airportsService";
 import { findCommonArrayEls } from "../utils/findCommon";
+
 import { Airport } from "../interfaces/Airports";
+import { AmadeusDestinationCity } from "../interfaces/DestinationCities";
+import { URLSearchParamsInit } from "react-router-dom";
 // import { Button } from 'react-bootstrap';
 
 const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryParamsArray, setSearchParams }: SearchProps) => {
@@ -53,10 +57,10 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
 
   const handleSearch = () => {
     let promises = [];
-    let origins = [];
+    let origins: string[] = [];
     for (let el of cityComponents) {
-      promises.push(getDestinationCityList(document.getElementById(el!.itemId).value));
-      origins.push(document.getElementById(el.itemId).value);
+      promises.push(getDestinationCityList((document.getElementById(el.itemId) as HTMLInputElement).value));
+      origins.push((document.getElementById(el.itemId) as HTMLInputElement).value);
     }
 
     // -- Reset destination city state to get rid of previous search results
@@ -64,7 +68,7 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
     setOriginAirports(origins);
 
     // -- Update query params
-    let queryParamsObject = {}
+    let queryParamsObject: {[key: string]: string}= {}
     let counter = 1
     for (let el of origins) {
       let name = `origin${counter}`
@@ -126,10 +130,12 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
 
 type SearchProps = {
   allAirports: Airport[]
-  setOriginAirports(arg: string[]): void
-  setDestinationCities(arg: string[]): void
-  queryParamsArray: string[]
-  setSearchParams(arg: string[]): void
-}
+  setOriginAirports: React.Dispatch<React.SetStateAction<string[]>>
+  setDestinationCities: React.Dispatch<React.SetStateAction<AmadeusDestinationCity[]>>
+  queryParamsArray: (string | null)[]
+  setSearchParams:(nextInit: URLSearchParamsInit, navigateOptions?: {
+    replace?: boolean | undefined;
+    state?: any;
+} | undefined) => void}
 
 export default Search

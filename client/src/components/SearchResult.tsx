@@ -1,10 +1,12 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Icon } from 'leaflet';
+import { Airport } from "../interfaces/Airports";
+import { AmadeusDestinationCity } from "../interfaces/DestinationCities";
 
-const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
+const SearchResult = ({ originAirports, allAirports, destinationCities }: SearchResultProps) => {
 
   // -- Create an array of origin airports with geo-location
-  let originAirportGeoLocation = [];
+  let originAirportGeoLocation: DestinationCityLocation[] = [];
   for (let originCode of originAirports) {
     let airportLocation = {};
     for (let airport of allAirports) {
@@ -15,7 +17,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
           lat: airport.lat,
           lon: airport.lon
         }
-        originAirportGeoLocation.push(airportLocation)
+        originAirportGeoLocation.push(airportLocation as DestinationCityLocation)
       }
     }
   }
@@ -24,7 +26,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
   let destinationCityGeoLocation = [];
   let destCityLength = !destinationCities ? 0 : destinationCities.length
   for (let i = 0; i < destCityLength; i++) {
-    let destCityLocation = {};
+    let destCityLocation: DestinationCityLocation = {} as DestinationCityLocation;
     for (let airport of allAirports) {
       if (airport.code === destinationCities[i].iataCode) {
         destCityLocation = {
@@ -81,6 +83,7 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
         {/* Destination city markers */}
         {destinationCityGeoLocation.map(destination => {
           return <Marker key={destination.name} position={[destination.lat, destination.lon]} icon={destIcon}>
+            {/* @ts-ignore */}
             <Popup width={70}>
               {destination.name} ({destination.code})
               <br />
@@ -115,6 +118,20 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }) => {
 
     </div>
   )
+}
+
+
+type SearchResultProps = {
+  originAirports: string[]
+  allAirports: Airport[]
+  destinationCities: AmadeusDestinationCity[]
+}
+
+type DestinationCityLocation = {
+  code: string
+  name: string
+  lat: number
+  lon: number
 }
 
 export default SearchResult
