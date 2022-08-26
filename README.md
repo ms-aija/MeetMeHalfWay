@@ -1,4 +1,4 @@
-# MeetMeHalfWay - find destinations that are only one flight away from all the origin cities
+# MeetMeHalfWay - find destinations that are only one flight away from all of the origin cities
 The app lets you input up to six origin airport cities and search for common destinations served by direct flights.
 
 ![Homepage!](/assets/MeetMeHalfWay-Screenshot.jpg "Homepage")
@@ -26,7 +26,7 @@ CLIENT_SECRET=
 ```
 
 ### Run on localhost
-* To start the server run `npm run start` from the `/server` folder
+* To start the server run `npm start` from the `/server` folder
 * To launch the application in browser run `npm start` from the `/client` folder
 
 
