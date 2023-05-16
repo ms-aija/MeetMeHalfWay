@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Index from './components/Index';
+import HomePage from './pages/HomePage';
 
 
 function App() {
@@ -9,8 +9,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Index />} />
-        <Route path='/*' element={<Index />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/*' element={<HomePage />} />
       </Routes>
     </Router>
   );

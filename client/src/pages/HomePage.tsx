@@ -7,13 +7,14 @@ import { sortByDirectFlightCount } from '../utils/sort';
 import { Airport } from '../interfaces/Airports';
 import { AmadeusDestinationCity } from '../interfaces/DestinationCities';
 
-import Navbar from './Navbar';
-import Search from './Search';
-import SearchResult from './SearchResult';
+import Navbar from '../components/Navbar';
+import Search from '../components/Search';
+import SearchResult from '../components/SearchResult';
+import SearchPanel from '../components/SearchPanel';
 
 
 // function App() {
-function Index() {
+function HomePage() {
   const [allAirports, setAllAirports] = useState<Airport[]>([]);
   const [originAirports, setOriginAirports] = useState<string[]>([]);
   const [destinationCities, setDestinationCities] = useState<AmadeusDestinationCity[]>([]);
@@ -28,19 +29,19 @@ function Index() {
   let queryParamsArray: (string | null )[] = [origin1, origin2, origin3, origin4, origin5, origin6];
 
   // -- Get list of all airports on initial page load
-  useEffect(() => {
-    getAirportList()
-      .then(result => {
-        if (result.status === 500) {
-          alert('Oops, something went wrong. Please try again');
-        } else {
-          return setAllAirports(sortByDirectFlightCount(result));
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  }, [])
+  // useEffect(() => {
+  //   getAirportList()
+  //     .then(result => {
+  //       if (result.status === 500) {
+  //         alert('Oops, something went wrong. Please try again');
+  //       } else {
+  //         return setAllAirports(sortByDirectFlightCount(result));
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //     })
+  // }, [])
 
   return (
     <div className="App">
@@ -54,13 +55,17 @@ function Index() {
           setSearchParams={setSearchParams}
         />
       </div>
-      <SearchResult
-        destinationCities={destinationCities}
-        originAirports={originAirports}
-        allAirports={allAirports}
-      />
+      <div className="search-panel-container">
+        <SearchPanel/>
+        <SearchResult
+          destinationCities={destinationCities}
+          originAirports={originAirports}
+          allAirports={allAirports}
+        />
+      </div>
     </div>
   );
-}
+};
 
-export default Index;
+
+export default HomePage;

@@ -6,6 +6,12 @@ export const getAirportList = () => {
   .catch(err => console.error(err))
 }
 
+export const getAirportSearchData = (searchTerm: string) => {
+  return fetch(`${BASE_URL}/airports/${searchTerm}`)
+  .then(result => result.json())
+  .catch(err => console.error(err))
+}
+
 export const getDestinationCityList = (iataCode: string) => {
   return fetch(`${BASE_URL}/destinations/${iataCode}`)
   .then((result) => {
