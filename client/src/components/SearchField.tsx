@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { useId } from "react"
+import { useQuery } from "@tanstack/react-query";
 import { getAirportSearchData } from "../services/airportsService"
 
 import { IAirport } from "../interfaces/Airports"
+import { useDebounce } from "../hooks/useDebounce"
 
 type SearchFieldProps = {
   setOriginAirports: React.Dispatch<React.SetStateAction<IAirport[] | null>>
@@ -10,16 +12,24 @@ type SearchFieldProps = {
 
 
 function SearchField({setOriginAirports} : SearchFieldProps) {
-  const [searchField, setSearchField] = useState<IAirport[] | null>()
+  const [searchInput, setSearchInput] = useState<string>('')
+  const [searchResults, setSearchResults] = useState<IAirport[] | null>(null)
   const inputFieldId = useId()
 
-
   async function handleChange (e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value)
-    let searchResults = await getAirportSearchData(e.target.value);
-    console.log(searchResults);
-    setSearchField(searchResults);
+    setSearchInput(e.target.value);
   }
+
+  let debouncedInput = useDebounce(searchInput, 1000);
+
+  const { error, data } = useQuery({
+    queryKey: [`airport-search-${inputFieldId}`, debouncedInput],
+    queryFn: async () => {
+      let result: IAirport[] = await getAirportSearchData(debouncedInput)
+      console.log({result})
+      setSearchResults(result);
+    },
+  })
 
   return (
     // input field for origin airport
@@ -33,11 +43,11 @@ function SearchField({setOriginAirports} : SearchFieldProps) {
       />
     </label>
     <datalist id={inputFieldId}>
-        {searchField && searchField.map((airport) => {
+        {searchResults && searchResults.map((airport) => {
           return <option
             key={airport.id}
-            value={airport.name}>
-            {`${airport.name} (${airport.address.cityName}, ${airport.address.countryName})`}
+            value={airport.address.cityName + ' ' + airport.name}>
+              {`${airport.name} (${airport.address.cityName}, ${airport.address.countryName})`}
             </option>
         })}
       </datalist>

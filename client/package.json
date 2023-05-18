@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^4.29.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
@@ -12,14 +13,13 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
     "leaflet": "^1.8.0",
-    "node-sass": "^7.0.1",
+    "node-sass": "^8.0.0",
     "query-string": "^7.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-leaflet": "^4.0.0",
-    "react-lottie": "^1.2.3",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "sass": "^1.50.1",
     "typescript": "^4.7.2",
     "web-vitals": "^2.1.4"
@@ -36,6 +36,9 @@
       "react-app/jest"
     ]
   },
+  "devDependencies": {
+    "@types/leaflet": "^1.7.11"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -47,9 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/leaflet": "^1.7.11",
-    "@types/react-lottie": "^1.2.6"
   }
 }

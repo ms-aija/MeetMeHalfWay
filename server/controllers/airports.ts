@@ -5,6 +5,7 @@ import Express from 'express';
 export async function getAirports(req: Express.Request, res: Express.Response) {
   try {
     const airportName = req.params.airportName;
+    console.log('airportName: ', airportName);
     const response = await amadeus.referenceData.locations.get({
       keyword: airportName,
       subType: 'AIRPORT',
