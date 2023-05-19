@@ -42,7 +42,7 @@ export interface IAirport {
       countryCode: string,
       regionCode: string
   },
-  analytics: {
+  analytics?: {
       travelers: {
           score: number
       }

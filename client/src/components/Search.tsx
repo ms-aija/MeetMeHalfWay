@@ -9,6 +9,17 @@ import { AmadeusDestinationCity } from "../interfaces/DestinationCities";
 import { URLSearchParamsInit } from "react-router-dom";
 // import { Button } from 'react-bootstrap';
 
+type SearchProps = {
+  allAirports: Airport[]
+  setOriginAirports: React.Dispatch<React.SetStateAction<string[]>>
+  setDestinationCities: React.Dispatch<React.SetStateAction<AmadeusDestinationCity[]>>
+  queryParamsArray: (string | null)[]
+  setSearchParams:(nextInit: URLSearchParamsInit, navigateOptions?: {
+    replace?: boolean | undefined;
+    state?: any;
+} | undefined) => void}
+
+
 const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryParamsArray, setSearchParams }: SearchProps) => {
 
   const [cityComponents, setCityComponents] = useState(() => {
@@ -128,14 +139,6 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
   )
 }
 
-type SearchProps = {
-  allAirports: Airport[]
-  setOriginAirports: React.Dispatch<React.SetStateAction<string[]>>
-  setDestinationCities: React.Dispatch<React.SetStateAction<AmadeusDestinationCity[]>>
-  queryParamsArray: (string | null)[]
-  setSearchParams:(nextInit: URLSearchParamsInit, navigateOptions?: {
-    replace?: boolean | undefined;
-    state?: any;
-} | undefined) => void}
+
 
 export default Search

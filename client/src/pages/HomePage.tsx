@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
-import { getAirportList } from '../services/airportsService';
 import { sortByDirectFlightCount } from '../utils/sort';
 
 import { Airport } from '../interfaces/Airports';
@@ -47,13 +45,13 @@ function HomePage() {
     <div className="App">
       <div className='navbar-search-container'>
         <Navbar />
-        <Search
+        {/* <Search
           allAirports={allAirports}
           setDestinationCities={setDestinationCities}
           setOriginAirports={setOriginAirports}
           queryParamsArray={queryParamsArray}
           setSearchParams={setSearchParams}
-        />
+        /> */}
       </div>
       <div className="search-panel-container">
         <SearchPanel/>

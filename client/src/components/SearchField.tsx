@@ -22,12 +22,13 @@ function SearchField({setOriginAirports} : SearchFieldProps) {
 
   let debouncedInput = useDebounce(searchInput, 1000);
 
-  const { error, data } = useQuery({
+  useQuery({
     queryKey: [`airport-search-${inputFieldId}`, debouncedInput],
     queryFn: async () => {
       let result: IAirport[] = await getAirportSearchData(debouncedInput)
       console.log({result})
       setSearchResults(result);
+      return result
     },
   })
 
@@ -46,7 +47,7 @@ function SearchField({setOriginAirports} : SearchFieldProps) {
         {searchResults && searchResults.map((airport) => {
           return <option
             key={airport.id}
-            value={airport.address.cityName + ' ' + airport.name}>
+            value={airport.address.cityName + ', ' + airport.name}>
               {`${airport.name} (${airport.address.cityName}, ${airport.address.countryName})`}
             </option>
         })}
