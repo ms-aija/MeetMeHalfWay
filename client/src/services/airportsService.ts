@@ -7,8 +7,8 @@ export const getAirportSearchData = (searchTerm: string) => {
   // .then(result => result.json())
   // .catch(err => console.error(err))
 
-  // Return mock data
-  return [airportSearchResultMock[0]];
+  // Return mock data)
+  return airportSearchResultMock;
 }
 
 export const getDestinationCityList = (iataCode: string) => {
