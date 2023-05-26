@@ -8,7 +8,16 @@ export const getAirportSearchData = (searchTerm: string) => {
   // .catch(err => console.error(err))
 
   // Return mock data)
-  return airportSearchResultMock;
+  if (searchTerm === '') {
+    return [];
+  } else {
+    // search through airportSEarchResultMock to check if searchTerm is included in address.cityName and return the full object
+    const res = airportSearchResultMock.filter((airport) => {
+      return airport.address.cityName.toLowerCase().includes(searchTerm.split(',')[0].toLowerCase())
+    });
+    console.log('res in getAiportSearchData: ', res);
+    return res
+  }
 }
 
 export const getDestinationCityList = (iataCode: string) => {

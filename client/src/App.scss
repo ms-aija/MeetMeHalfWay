@@ -45,7 +45,7 @@ body {
 }
 
 .navbar-search-container {
-  background-image: linear-gradient(to bottom, #91bac5, #7ca5b0, #68909b, #547c87, #416973);
+  // background-image: linear-gradient(to bottom, #91bac5, #7ca5b0, #68909b, #547c87, #416973);
   border-bottom: 3px solid whitesmoke;
   border-top: 2px solid whitesmoke;
 }
@@ -60,9 +60,10 @@ body {
 
 
 .Navbar {
-  color: whitesmoke;
+  // color: whitesmoke;
   height: 23vh;
   display: flex;
+  font-weight: lighter;
   flex-direction: column;
   justify-content: center;
   align-items: center;

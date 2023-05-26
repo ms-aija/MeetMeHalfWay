@@ -1,22 +1,20 @@
-// -- Use line 2 instead of line 4 when checking function in node with test data below
-// const findCommonArrayEls = (arrOfArrs) => {
+import { IAirport } from "../interfaces/Airports";
 
-// -- Export function
-export const findCommonArrayEls = (arrOfArrs: any[]) => {
-  const commonElsArr = [];
+export const findCommonArrayEls = (arrOfArrs: IAirport[][]): IAirport[] => {
+  let commonElsArr: IAirport[] = [];
   if (arrOfArrs.length === 1) {
-    commonElsArr.push([...arrOfArrs[0]]);
+    commonElsArr = arrOfArrs[0];
   } else {
-    let toDo = [...arrOfArrs];
+    let toDo = [...arrOfArrs]; //[ [{dest1, dest2}], [{dest1, dest3}] ]
     while (toDo.length > 1) {
-      toDo[0] = toDo[0].filter(function(o1: any) {
-        return toDo[1].some(function(o2: any) {
+      toDo[0] = toDo[0].filter(function(o1: IAirport) {
+        return toDo[1].some(function(o2: IAirport) {
           return o1.iataCode === o2.iataCode
         })
       })
       toDo.splice(1, 1);
     }
-    commonElsArr.push(toDo[0]);
+    commonElsArr = toDo[0];
   }
   return commonElsArr;
 }

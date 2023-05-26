@@ -33,6 +33,37 @@ export const airportSearchResultMock = [
 {
     type: "location",
     subType: "AIRPORT",
+    name: "HAMBURG",
+    detailedName: "HAMBURG/DE:HAMBURG",
+    id: "AHAM",
+    self: {
+      href: "https://test.api.amadeus.com/v1/reference-data/locations/AHAM",
+      methods: [
+        "GET"
+      ]
+    },
+    timeZoneOffset: "+02:00",
+    iataCode: "HAM",
+    geoCode: {
+      latitude: 53.63028,
+      longitude: 9.98834
+    },
+    address: {
+      cityName: "HAMBURG",
+      cityCode: "HAM",
+      countryName: "GERMANY",
+      countryCode: "DE",
+      regionCode: "EUROP"
+    },
+    analytics: {
+      travelers: {
+        score: 10
+      }
+    }
+},
+{
+    type: "location",
+    subType: "AIRPORT",
     name: "AUSTIN-BERGSTROM INTL",
     detailedName: "AUSTIN/TX/US:AUSTIN-BERGSTROM",
     id: "AAUS",

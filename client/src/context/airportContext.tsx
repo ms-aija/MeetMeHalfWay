@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useRef} from "react";
 // import { IAirport } from "../interfaces/Airports";
 import { IAirportInput } from "../interfaces/Airports";
+import { IAirport } from "../interfaces/Airports";
 
 
 interface IAirportSearchContext {
@@ -10,7 +11,9 @@ interface IAirportSearchContext {
   setOrigin2: React.Dispatch<React.SetStateAction<IAirportInput>>,
   origin3: IAirportInput,
   setOrigin3: React.Dispatch<React.SetStateAction<IAirportInput>>,
-  count: React.MutableRefObject<number>
+  count: React.MutableRefObject<number>,
+  destinationCities: IAirport[],
+  setDestinationCities: React.Dispatch<React.SetStateAction<IAirport[]>>
 }
 
 const AirportSearchContext = createContext<IAirportSearchContext | null>(null);
@@ -19,6 +22,7 @@ export default function AirportSearchProvider ({children}: {children: React.Reac
   const [origin1, setOrigin1] = useState<IAirportInput>({visible: true, content: null});
   const [origin2, setOrigin2] = useState<IAirportInput>({visible: true, content: null});
   const [origin3, setOrigin3] = useState<IAirportInput>({visible: false, content: null});
+  const [destinationCities, setDestinationCities] = useState<IAirport[]>([]);
 
   let count = useRef(2);
 
@@ -28,7 +32,8 @@ export default function AirportSearchProvider ({children}: {children: React.Reac
       origin1, setOrigin1,
       origin2, setOrigin2,
       origin3, setOrigin3,
-      count
+      count,
+      destinationCities, setDestinationCities
       }}>
       {children}
     </AirportSearchContext.Provider>

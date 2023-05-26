@@ -74,21 +74,21 @@ const Search = ({ allAirports, setOriginAirports, setDestinationCities, queryPar
   //     origins.push((document.getElementById(el.itemId) as HTMLInputElement).value);
   //   }
 
-    // -- Reset destination city state to get rid of previous search results
-    // setDestinationCities([]);
-    // setOriginAirports(origins);
+  //   // -- Reset destination city state to get rid of previous search results
+  //   setDestinationCities([]);
+  //   setOriginAirports(origins);
 
-    // -- Update query params
-    // let queryParamsObject: {[key: string]: string}= {}
-    // let counter = 1
-    // for (let el of origins) {
-    //   let name = `origin${counter}`
-    //   counter++
-    //   queryParamsObject[name] = el
-    // }
-    // setSearchParams(queryParamsObject);
+  //   // -- Update query params
+  //   let queryParamsObject: {[key: string]: string}= {}
+  //   let counter = 1
+  //   for (let el of origins) {
+  //     let name = `origin${counter}`
+  //     counter++
+  //     queryParamsObject[name] = el
+  //   }
+  //   setSearchParams(queryParamsObject);
 
-    // -- Get destinations for each origin city and find common destinations
+  //   // -- Get destinations for each origin city and find common destinations
   //   Promise.all(promises)
   //     .then(results => {
   //       let commonDestinations = findCommonArrayEls(results);

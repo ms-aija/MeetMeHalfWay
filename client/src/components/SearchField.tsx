@@ -17,22 +17,36 @@ function SearchField({setOrigin}: SearchFieldProps) {
 
   // On change sets searchInput, debounces it and queries the API for origin airports
   const inputFieldId = useId()
-  async function handleChange (e: React.ChangeEvent<HTMLInputElement>) {setSearchInput(e.target.value);}
+  function handleChange (e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchInput(e.target.value)
+    console.log('input field id: ',inputFieldId)
+  }
   let debouncedInput = useDebounce(searchInput, 1000);
-  useQuery({
-    queryKey: [`airport-search-${inputFieldId}`, debouncedInput],
-    queryFn: async () => {
-      let result: IAirport[] = await getAirportSearchData(debouncedInput)
-      console.log({result})
-      setSearchInputResults(result);
-      return result
-    },
-  })
+
+  // useQuery({
+  //   queryKey: [`airport-search-${inputFieldId}`, debouncedInput],
+  //   queryFn: async () => {
+  //     console.log('Querying API for: ', debouncedInput);
+  //     let result: IAirport[] = await getAirportSearchData(debouncedInput);
+  //     console.log('Query result: ', result);
+  //     setSearchInputResults(result);
+  //     return result;
+  //   },
+  //   staleTime: 60000
+  // });
+
+  useEffect(() => {
+    console.log('in useEffect with debouncedInput: ', debouncedInput)
+    let res = getAirportSearchData(debouncedInput)
+    setSearchInputResults(res);
+  }, [debouncedInput])
 
   // Sets origin airport in context when a new result has been fetched
   // Set it to the first result in case there is more than one
   useEffect(() => {
-    setOrigin({visible: true, content: searchInputResults && searchInputResults[0]})
+    console.log('in useEffect for searchInputResults')
+    searchInputResults &&console.log('setting origin for input field with ', searchInputResults)
+    searchInputResults && setOrigin({visible: true, content: searchInputResults && searchInputResults[0]})
   }, [searchInputResults, setOrigin]);
 
   return (
