@@ -1,72 +1,35 @@
+import { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Icon } from 'leaflet';
-import { Airport } from "../interfaces/Airports";
-import { AmadeusDestinationCity } from "../interfaces/DestinationCities";
+import { useAirportSearch } from '../context/airportContext';
+import { IAirport } from '../interfaces/Airports';
 
-const SearchResult = ({ originAirports, allAirports, destinationCities }: SearchResultProps) => {
+const SearchResult = () => {
+  const { origin1, origin2, origin3 } = useAirportSearch()!
+  const {destinationCities} = useAirportSearch()!
 
-  // -- Create an array of origin airports with geo-location
-  let originAirportGeoLocation: DestinationCityLocation[] = [];
-  for (let originCode of originAirports) {
-    let airportLocation = {};
-    for (let airport of allAirports) {
-      if (airport.code === originCode) {
-        airportLocation = {
-          code: originCode,
-          name: airport.name,
-          lat: airport.lat,
-          lon: airport.lon
-        }
-        originAirportGeoLocation.push(airportLocation as DestinationCityLocation)
-      }
-    }
-  }
+  const [originAirports, setOriginAirports] = useState<(IAirport | null)[]>([]);
 
-  // -- Create an array of destination cities with geo-location
-  let destinationCityGeoLocation = [];
-  let destCityLength = !destinationCities ? 0 : destinationCities.length
-  for (let i = 0; i < destCityLength; i++) {
-    let destCityLocation: DestinationCityLocation = {} as DestinationCityLocation;
-    for (let airport of allAirports) {
-      if (airport.code === destinationCities[i].iataCode) {
-        destCityLocation = {
-          code: airport.code,
-          name: destinationCities[i].name,
-          lat: airport.lat,
-          lon: airport.lon
-        }
-        destinationCityGeoLocation.push(destCityLocation)
-      }
-    }
-
-    if (!destCityLocation.code) {
-      destinationCityGeoLocation.push({
-        code: destinationCities[i].iataCode,
-        name: destinationCities[i].name,
-        lat: 9999,
-        lon: 9999
-      })
-    }
-  }
+  useEffect(() => {
+    console.log('origin1: ', origin1)
+    console.log('origin2: ', origin2)
+    console.log('origin3: ', origin3)
+    const originAirports = [origin1.content, origin2.content, origin3.content]
+    setOriginAirports(originAirports);
+  }, [origin1, origin2, origin3])
 
   // -- Custom icons
   const originIcon = new Icon({
     iconUrl: '/icons8-location-64.png',
     iconSize: [33, 33],
-    // iconAnchor: [1, 1],
-    // popupAnchor: [-0, -76]
   })
   const destIcon = new Icon({
     iconUrl: '/icons8-select-24.png',
     iconSize: [17, 17],
-    // iconAnchor: [22, 94],
-    // popupAnchor: [-0, -76]
   })
 
   return (
     <div className='SearchResult'>
-
-
       <MapContainer center={[37, 10]} zoom={3} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -74,29 +37,29 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }: Search
         />
 
         {/* Origin airport markers */}
-        {originAirportGeoLocation.map(origin => {
-          return <Marker key={origin.code} position={[origin.lat, origin.lon]} icon={originIcon}>
-            <Popup>{origin.name} ({origin.code})</Popup>
+        {originAirports && originAirports.map(origin => {
+          return origin && <Marker key={origin.id} position={[origin.geoCode.latitude, origin.geoCode.longitude]} icon={originIcon}>
+            <Popup>{origin.name} ({origin.iataCode})</Popup>
           </Marker>
         })}
 
         {/* Destination city markers */}
-        {destinationCityGeoLocation.map(destination => {
-          return <Marker key={destination.name} position={[destination.lat, destination.lon]} icon={destIcon}>
+        {destinationCities && destinationCities.map(destination => {
+          return <Marker key={destination.name} position={[destination.geoCode.latitude, destination.geoCode.longitude]} icon={destIcon}>
             {/* @ts-ignore */}
             <Popup width={70}>
-              {destination.name} ({destination.code})
+              {destination.name} ({destination.iataCode})
               <br />
               <div className='map-popup-flight-list'>
               ✈︎
               {originAirports.map(airport => {
-                return <div className='map-popup-flight-list-item'>
+                return <div key={airport?.iataCode} className='map-popup-flight-list-item'>
                   <a
-                    href={`https://www.skyscanner.de/transport/flights/${airport}/${destination.code}`}
+                    href={`https://www.skyscanner.de/transport/flights/${airport}/${destination.iataCode}`}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    &nbsp;{airport}-{destination.code}&nbsp;
+                    &nbsp;{airport!.name}-{destination.iataCode}&nbsp;
                   </a>
                   ✈︎
                 </div>
@@ -108,30 +71,14 @@ const SearchResult = ({ originAirports, allAirports, destinationCities }: Search
         })}
       </MapContainer>
 
-
+     {/* List of destination cities */}
       <section className='list-of-destination-city-names' id='footer'>
         {(destinationCities.length > 0) && (destinationCities.map(city => {
           return <p key={city.name} className='destination-city-name'>{city.name}</p>
         }))}
       </section>
-
-
     </div>
   )
-}
-
-
-type SearchResultProps = {
-  originAirports: string[]
-  allAirports: Airport[]
-  destinationCities: AmadeusDestinationCity[]
-}
-
-type DestinationCityLocation = {
-  code: string
-  name: string
-  lat: number
-  lon: number
 }
 
 export default SearchResult

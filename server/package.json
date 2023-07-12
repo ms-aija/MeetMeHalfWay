@@ -18,7 +18,8 @@
     "follow-redirects": "^1.14.9",
     "fs": "^0.0.1-security",
     "nodemon": "^2.0.16",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
