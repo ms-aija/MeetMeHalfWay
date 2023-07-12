@@ -18,27 +18,18 @@ const SearchResult = () => {
     setOriginAirports(originAirports);
   }, [origin1, origin2, origin3])
 
-
-  // -- Create an array of destination cities with geo-location
-
   // -- Custom icons
   const originIcon = new Icon({
     iconUrl: '/icons8-location-64.png',
     iconSize: [33, 33],
-    // iconAnchor: [1, 1],
-    // popupAnchor: [-0, -76]
   })
   const destIcon = new Icon({
     iconUrl: '/icons8-select-24.png',
     iconSize: [17, 17],
-    // iconAnchor: [22, 94],
-    // popupAnchor: [-0, -76]
   })
 
   return (
     <div className='SearchResult'>
-
-
       <MapContainer center={[37, 10]} zoom={3} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -62,7 +53,7 @@ const SearchResult = () => {
               <div className='map-popup-flight-list'>
               ✈︎
               {originAirports.map(airport => {
-                return <div className='map-popup-flight-list-item'>
+                return <div key={airport?.iataCode} className='map-popup-flight-list-item'>
                   <a
                     href={`https://www.skyscanner.de/transport/flights/${airport}/${destination.iataCode}`}
                     target="_blank"
@@ -80,14 +71,12 @@ const SearchResult = () => {
         })}
       </MapContainer>
 
-
+     {/* List of destination cities */}
       <section className='list-of-destination-city-names' id='footer'>
         {(destinationCities.length > 0) && (destinationCities.map(city => {
           return <p key={city.name} className='destination-city-name'>{city.name}</p>
         }))}
       </section>
-
-
     </div>
   )
 }

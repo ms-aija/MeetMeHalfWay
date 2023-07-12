@@ -14,11 +14,6 @@ function SearchPanel() {
     origin2.content && promises.push(getDestinationCityList(origin2.content.iataCode));
     origin3.content && promises.push(getDestinationCityList(origin3.content.iataCode));
 
-    // -- Reset destination city state to get rid of previous search results
-
-
-    // -- Update query params
-
     // -- Get destinations for each origin city and find common destinations
     Promise.all(promises)
       .then(results => {
@@ -33,9 +28,9 @@ function SearchPanel() {
   return (
     <div className={'SearchPanel'}>
       <div>SearchPanel</div>
-      <SearchField setOrigin={setOrigin1}/>
-      <SearchField setOrigin={setOrigin2}/>
-      <SearchField setOrigin={setOrigin3}/>
+      <SearchField key={'SearchField1'} setOrigin={setOrigin1}/>
+      <SearchField key={'SearchField2'} setOrigin={setOrigin2}/>
+      <SearchField key={'SearchField3'} setOrigin={setOrigin3}/>
       <button>+</button>
       <button onClick={handleSearch}>Search</button>
     </div>
