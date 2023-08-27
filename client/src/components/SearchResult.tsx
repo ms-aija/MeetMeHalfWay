@@ -7,6 +7,7 @@ import { IAirport } from '../interfaces/Airports';
 const SearchResult = () => {
   const { origin1, origin2, origin3 } = useAirportSearch()!
   const {destinationCities} = useAirportSearch()!
+  console.log(destinationCities);
 
   const [originAirports, setOriginAirports] = useState<(IAirport | null)[]>([]);
 
