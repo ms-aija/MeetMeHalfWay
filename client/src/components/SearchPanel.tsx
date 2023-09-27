@@ -30,7 +30,7 @@ function SearchPanel() {
       <SearchField key={'SearchField1'} setOrigin={setOrigin1}/>
       <SearchField key={'SearchField2'} setOrigin={setOrigin2}/>
       <SearchField key={'SearchField3'} setOrigin={setOrigin3}/>
-      <button className="add-button">+</button>
+      <button className="add-button">Add origin city</button>
       <button className="search-button" onClick={handleSearch}>Search</button>
     </div>
   )
