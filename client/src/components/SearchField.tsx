@@ -43,7 +43,7 @@ const SearchField = memo(function SearchField({setOrigin}: SearchFieldProps) {
     <div className='SearchField'>
     <label>
       <input
-        placeholder='Airport/City...'
+        placeholder='Origin Airport / City...'
         name='airport-city'
         list={inputFieldId}
         onChange={(e) => handleChange(e)}
@@ -54,8 +54,8 @@ const SearchField = memo(function SearchField({setOrigin}: SearchFieldProps) {
         {searchInputResults && searchInputResults.map((airport) => {
           return <option
             key={airport.id}
-            value={airport.address.cityName + ', ' + airport.name}>
-              {`${airport.address.cityName} (${airport.iataCode})`}
+            value={`${airport.address.cityName} (${airport.iataCode})`}>
+              {`${airport.name}`}
             </option>
         })}
       </datalist>

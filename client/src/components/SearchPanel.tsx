@@ -27,12 +27,11 @@ function SearchPanel() {
 
   return (
     <div className={'SearchPanel'}>
-      <div>SearchPanel</div>
       <SearchField key={'SearchField1'} setOrigin={setOrigin1}/>
       <SearchField key={'SearchField2'} setOrigin={setOrigin2}/>
       <SearchField key={'SearchField3'} setOrigin={setOrigin3}/>
-      <button>+</button>
-      <button onClick={handleSearch}>Search</button>
+      <button className="add-button">Add origin city</button>
+      <button className="search-button" onClick={handleSearch}>Search</button>
     </div>
   )
 }

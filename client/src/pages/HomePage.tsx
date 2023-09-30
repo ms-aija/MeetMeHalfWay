@@ -5,12 +5,10 @@ import SearchPanel from '../components/SearchPanel';
 function HomePage() {
   return (
     <div className="App">
-      <div className='navbar-search-container'>
-        <Navbar />
-      </div>
-      <div className="search-panel-container">
-        <SearchPanel/>
-        <SearchResult/>
+      <Navbar />
+      <div className="search-container">
+        <SearchPanel />
+        <SearchResult />
       </div>
     </div>
   );
