@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&family=Roboto:wght@300;400&family=Space+Mono&family=Ubuntu&family=Ubuntu+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&family=Righteous&family=Roboto:wght@300;400&family=Space+Mono&family=Ubuntu&family=Ubuntu+Mono&display=swap');
 
-$color-darkest: #8A4B63;
-$color-dark: #8F668B;
+$color-darkest: #5a5458;
+$color-dark: #7c747a;
 $color-medium: #8D83AC;
-$color-light: #cbe9f1;
+$color-light: #D3DBE5;
 $color-lightest: #94BAD3;
 $color-text-light: #d8e4ec;
 $color-text-medium: #7b9ab0;
@@ -50,7 +50,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  margin-top: 170px;
+  margin-top: 190px;
 
   @media screen and (max-width: 550px) {
     flex-direction: column;
@@ -59,9 +59,9 @@ body {
 }
 
 .Navbar {
-  background-image: url(./assets/1867051.jpg);
+  background-image: url(./assets/friendssmall2.jpg);
   background-position: center;
-  height: 150px;
+  height: 170px;
   margin-bottom: 20px;
   padding-top: 40px;
   display: flex;
@@ -70,16 +70,16 @@ body {
   // justify-content: center;
   align-items: center;
   width: 100vmax;
-  border-bottom: solid 1px $color-borders;
+  // border-bottom: solid 1px $color-borders;
   position: fixed;
   top: 0;
 
   h1 {
     font-family: 'Pacifico', cursive;
-    font-size: 2rem;
+    font-size: 2.6rem;
     margin: 0;
-    padding: 5px;
-    color: $color-text-light;
+    padding: 0;
+    color: $color-text-dark;
     margin-right: 10px;
   }
 
@@ -88,7 +88,7 @@ body {
     padding: 2px;
     font-size: 1rem;
     font-weight: bolder;
-    color: $color-text-light;
+    color: $color-text-dark;
     // align-self: bottom
   }
 }
@@ -155,7 +155,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 75vw;
-  height: 80vh;
+  height: 77vh;
   padding-right: 30px;
 }
 
@@ -163,6 +163,10 @@ body {
   width: 100%;
   height: 90%;
   z-index: 3;
+}
+
+.leaflet-control-attribution {
+  color: $color-text-medium;
 }
 
 .map-popup-flight-list-item {

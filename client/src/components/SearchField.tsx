@@ -43,7 +43,7 @@ const SearchField = memo(function SearchField({setOrigin}: SearchFieldProps) {
     <div className='SearchField'>
     <label>
       <input
-        placeholder='Airport/City...'
+        placeholder='Origin Airport / City...'
         name='airport-city'
         list={inputFieldId}
         onChange={(e) => handleChange(e)}

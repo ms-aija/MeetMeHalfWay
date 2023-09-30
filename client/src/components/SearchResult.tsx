@@ -31,10 +31,10 @@ const SearchResult = () => {
 
   return (
     <div className='SearchResult'>
-      <MapContainer center={[37, 10]} zoom={3} scrollWheelZoom={true}>
+      <MapContainer center={[47, 15]} zoom={4} scrollWheelZoom={true}>
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+          url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
         />
 
         {/* Origin airport markers */}

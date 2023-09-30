@@ -10,6 +10,7 @@ The app lets you input up to six origin airport cities and search for common des
 * Leaflet.js
 * Amadeus for Developers API
 
+
 ## Getting Started
 
 ### External data
@@ -47,5 +48,6 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 
 ## Acknowledgments
+* Cover photo by <a href="https://unsplash.com/@goian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ian Schneider</a> on <a href="https://unsplash.com/photos/jk8rarn6lmw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 * [airports.json](https://gist.github.com/tdreyno/4278655) as a starting point for airport search dropdown
 * [NationsOnline](https://www.nationsonline.org/oneworld/IATA_Codes/airport_code_list.htm) for IATA city code references
