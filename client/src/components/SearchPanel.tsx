@@ -3,6 +3,7 @@ import SearchField from './SearchField';
 import { getDestinationCityList } from '../services/airportsService';
 import { findCommonArrayEls } from '../utils/findCommon';
 import { useAirportSearch } from '../context/airportContext';
+import { IAirport } from '../interfaces/Airports';
 
 function SearchPanel() {
   const [addInputDisabled, setAddInputDisabled] = useState<boolean>(false);
@@ -35,11 +36,41 @@ function SearchPanel() {
     }
   };
 
+  const handleRemoveOrigin = (origin: IAirport | null) => {
+    console.log('handleRemoveOrigin', origin);
+    setOrigins((prev) => {
+      const updatedOrigins = prev.filter((it) => it?.name !== origin?.name);
+      console.log({ updatedOrigins });
+      return updatedOrigins;
+    });
+  };
+
+  const handleSelectOrigin = (
+    selectedOption: IAirport,
+    selectedIndex: number
+  ) => {
+    setOrigins((prev) => {
+      return prev.map((item, i) =>
+        i === selectedIndex ? selectedOption : item
+      );
+    });
+  };
+
   return (
     <div className={'SearchPanel'}>
       {origins.map((origin, i) => {
         console.log('searchField:', origin?.name, i);
-        return <SearchField key={`SearchField${i}`} index={i} />;
+        return (
+          <SearchField
+            key={`SearchField-${origin?.displayName} ${i}`}
+            origin={origin}
+            canDelete={i > 1}
+            handleRemoveOrigin={() => handleRemoveOrigin(origin)}
+            handleSelectOrigin={(selectedOption: IAirport) =>
+              handleSelectOrigin(selectedOption, i)
+            }
+          />
+        );
       })}
       <button
         className="add-button"

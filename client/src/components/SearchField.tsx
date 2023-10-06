@@ -1,76 +1,82 @@
 import { useState, useEffect, useRef, useId } from 'react';
 import { getAirportSearchData } from '../services/airportsService';
 import { useDebounce } from '../hooks/useDebounce';
-import { useAirportSearch } from '../context/airportContext';
 import { IAirport } from '../interfaces/Airports';
 
 type SearchFieldProps = {
-  index: number;
+  origin: IAirport | null;
+  canDelete: boolean;
+  handleRemoveOrigin: () => void;
+  handleSelectOrigin: (selectedOption: IAirport) => void;
 };
 
-const SearchField = function SearchField({ index }: SearchFieldProps) {
+const SearchField = function SearchField({
+  origin,
+  canDelete,
+  handleRemoveOrigin,
+  handleSelectOrigin,
+}: SearchFieldProps) {
   const [searchInput, setSearchInput] = useState<string>('');
-  // const [selectionMade, setSelectionMade] = useState<boolean>(false);
-  const [searchInputResults, setSearchInputResults] = useState<
-    IAirport[] | null
-  >(null);
-  const { setOrigins } = useAirportSearch()!;
+  const [searchOptions, setSearchOptions] = useState<IAirport[] | null>(null);
 
   // On change sets searchInput, debounce it and query the API for origin airports only with debounced value
   const inputFieldId = useId();
-  const inputFieldRef = useRef<HTMLInputElement>(null);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     console.log('handleChange: ', e.target.value);
     setSearchInput(e.target.value);
   }
 
-  let debouncedInput = useDebounce(searchInput, 1000);
+  // let debouncedInput = useDebounce(searchInput, 1000); // TODO re-add later
+  // let debouncedInput = searchInput;
+
+  useEffect(() => {
+    console.log('INIT RENDER');
+    setSearchInput(origin?.displayName || '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     async function fetchAirportData() {
-      if (debouncedInput) {
-        const data = await getAirportSearchData(debouncedInput);
-        setSearchInputResults(data);
+      if (searchInput) {
+        const data = await getAirportSearchData(searchInput);
+        setSearchOptions(
+          data.map((it) => ({
+            ...it,
+            displayName: `${it.address.cityName} (${it.iataCode})`,
+          }))
+        );
       } else {
-        setSearchInputResults(null);
+        setSearchOptions(null);
       }
     }
     fetchAirportData();
-    // setSearchInput('');
-  }, [debouncedInput]);
-
-  const handleRemove = () => {
-    console.log({ inputFieldRef });
-    setOrigins((prev) => {
-      console.log({ prev });
-      const newOrigins = [...prev];
-      newOrigins.splice(index, 1);
-      console.log({ newOrigins });
-      return newOrigins;
-    });
-  };
+  }, [searchInput]);
 
   const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    if (searchInputResults && searchInputResults.length > 0) {
-      setOrigins((prev) => {
-        const newOrigins = [...prev];
-        newOrigins[index] = searchInputResults[0];
-        return newOrigins;
-      });
+    const newValue = e.currentTarget.value;
+    const selectedOption = searchOptions?.find(
+      (it) => it.displayName === newValue
+    );
+    if (selectedOption) {
+      console.log('onInputChange: ', newValue);
+      setSearchInput(newValue);
+      handleSelectOrigin(selectedOption);
+    } else {
+      setSearchInput(newValue);
     }
-    setSearchInput((e.target as HTMLInputElement)?.value || '');
   };
+
+  console.log('searchInput', searchInput);
 
   return (
     // Input field for origin airport
     <div className="SearchField">
       <label>
         <input
-          ref={inputFieldRef}
           type="text"
           placeholder="Origin Airport / City..."
-          name={`airport-city-${index}`}
+          // name={`airport-city-${origin?.name}`} // TODO we commented this out but it's probably irrelevant
           list={inputFieldId}
           value={searchInput}
           onChange={handleChange}
@@ -80,23 +86,17 @@ const SearchField = function SearchField({ index }: SearchFieldProps) {
       </label>
       {/* Dropdown list for the input field */}
       <datalist id={inputFieldId}>
-        {searchInputResults &&
-          searchInputResults.map((airport) => {
+        {searchOptions &&
+          searchOptions.map((airport, i) => {
             return (
-              <option
-                key={airport.id}
-                value={`${airport.address.cityName} (${airport.iataCode})`}
-                onChange={() => {
-                  console.log('+++> change');
-                }}
-              >
+              <option key={`${airport.id}-${i}`} value={airport.displayName}>
                 {`${airport.name}`}
               </option>
             );
           })}
       </datalist>
-      {index > 1 && (
-        <button className="remove-button" onClick={handleRemove}>
+      {canDelete && (
+        <button className="remove-button" onClick={handleRemoveOrigin}>
           x
         </button>
       )}
