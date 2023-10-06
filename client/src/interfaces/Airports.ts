@@ -48,8 +48,3 @@ export interface IAirport {
       }
   }
 }
-
-export interface IAirportInput {
-    visible: boolean,
-    content: IAirport | null
-  }

@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Icon } from 'leaflet';
 import { useAirportSearch } from '../context/airportContext';
-import { IAirport } from '../interfaces/Airports';
+// import { IAirport } from '../interfaces/Airports';
 
 const SearchResult = () => {
-  const { origin1, origin2, origin3 } = useAirportSearch()!
+  const { origins } = useAirportSearch()!
   const {destinationCities} = useAirportSearch()!
   console.log(destinationCities);
 
-  const [originAirports, setOriginAirports] = useState<(IAirport | null)[]>([]);
+  // const [originAirports, setOriginAirports] = useState<(IAirport | null)[]>([]);
 
-  useEffect(() => {
-    console.log('origin1: ', origin1)
-    console.log('origin2: ', origin2)
-    console.log('origin3: ', origin3)
-    const originAirports = [origin1.content, origin2.content, origin3.content]
-    setOriginAirports(originAirports);
-  }, [origin1, origin2, origin3])
+  // useEffect(() => {
+  //   const originAirports = [origin1.content, origin2.content, origin3.content]
+  //   setOriginAirports(originAirports);
+  // }, [origin1, origin2, origin3])
 
   // -- Custom icons
   const originIcon = new Icon({
@@ -38,7 +35,7 @@ const SearchResult = () => {
         />
 
         {/* Origin airport markers */}
-        {originAirports && originAirports.map(origin => {
+        {origins && origins.map(origin => {
           return origin && <Marker key={origin.id} position={[origin.geoCode.latitude, origin.geoCode.longitude]} icon={originIcon}>
             <Popup>{origin.name} ({origin.iataCode})</Popup>
           </Marker>
@@ -53,7 +50,7 @@ const SearchResult = () => {
               <br />
               <div className='map-popup-flight-list'>
               ✈︎
-              {originAirports.map(airport => {
+              {origins.map(airport => {
                 return <div key={airport?.iataCode} className='map-popup-flight-list-item'>
                   <a
                     href={`https://www.skyscanner.de/transport/flights/${airport}/${destination.iataCode}`}

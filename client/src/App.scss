@@ -50,7 +50,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  margin-top: 190px;
+  margin-top: 220px;
 
   @media screen and (max-width: 550px) {
     flex-direction: column;
@@ -129,8 +129,22 @@ body {
 
 .SearchField {
   margin-bottom: 10px;
+  position: relative;
   @media screen and (max-width: 550px) {
     padding-right: 30px;
+  }
+
+  button {
+    width: 20px;
+    height: 20px;
+    color: $color-text-medium;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 4px;
   }
 
   input {
@@ -147,8 +161,8 @@ body {
 
     }
   }
-
 }
+
 
 .SearchResult {
   display: flex;
