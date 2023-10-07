@@ -46,7 +46,7 @@ function SearchPanel() {
   };
 
   const handleSelectOrigin = (
-    selectedOption: IAirport,
+    selectedOption: IAirport | null,
     selectedIndex: number
   ) => {
     setOrigins((prev) => {
@@ -66,7 +66,7 @@ function SearchPanel() {
             origin={origin}
             canDelete={i > 1}
             handleRemoveOrigin={() => handleRemoveOrigin(origin)}
-            handleSelectOrigin={(selectedOption: IAirport) =>
+            handleSelectOrigin={(selectedOption: IAirport | null) =>
               handleSelectOrigin(selectedOption, i)
             }
           />

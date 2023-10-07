@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useId } from 'react';
+import { useState, useEffect, useId } from 'react';
 import { getAirportSearchData } from '../services/airportsService';
 import { useDebounce } from '../hooks/useDebounce';
 import { IAirport } from '../interfaces/Airports';
@@ -7,7 +7,7 @@ type SearchFieldProps = {
   origin: IAirport | null;
   canDelete: boolean;
   handleRemoveOrigin: () => void;
-  handleSelectOrigin: (selectedOption: IAirport) => void;
+  handleSelectOrigin: (selectedOption: IAirport | null) => void;
 };
 
 const SearchField = function SearchField({
@@ -31,7 +31,6 @@ const SearchField = function SearchField({
   // let debouncedInput = searchInput;
 
   useEffect(() => {
-    console.log('INIT RENDER');
     setSearchInput(origin?.displayName || '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -39,6 +38,7 @@ const SearchField = function SearchField({
   useEffect(() => {
     async function fetchAirportData() {
       if (searchInput) {
+        console.log('if fetchAirportData: ', searchInput);
         const data = await getAirportSearchData(searchInput);
         setSearchOptions(
           data.map((it) => ({
@@ -47,6 +47,7 @@ const SearchField = function SearchField({
           }))
         );
       } else {
+        console.log('else fetchAirportData: ', searchInput);
         setSearchOptions(null);
       }
     }
@@ -54,11 +55,14 @@ const SearchField = function SearchField({
   }, [searchInput]);
 
   const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const newValue = e.currentTarget.value;
     const selectedOption = searchOptions?.find(
       (it) => it.displayName === newValue
     );
-    if (selectedOption) {
+    if (newValue === '') {
+      handleSelectOrigin(null);
+    } else if (selectedOption) {
       console.log('onInputChange: ', newValue);
       setSearchInput(newValue);
       handleSelectOrigin(selectedOption);
@@ -67,8 +71,6 @@ const SearchField = function SearchField({
     }
   };
 
-  console.log('searchInput', searchInput);
-
   return (
     // Input field for origin airport
     <div className="SearchField">
@@ -76,12 +78,12 @@ const SearchField = function SearchField({
         <input
           type="text"
           placeholder="Origin Airport / City..."
-          // name={`airport-city-${origin?.name}`} // TODO we commented this out but it's probably irrelevant
           list={inputFieldId}
           value={searchInput}
           onChange={handleChange}
-          autoComplete="off"
           onInput={onInputChange}
+          autoComplete="off"
+          required
         />
       </label>
       {/* Dropdown list for the input field */}
