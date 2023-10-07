@@ -23,11 +23,10 @@ const SearchField = function SearchField({
   const inputFieldId = useId();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log('handleChange: ', e.target.value);
     setSearchInput(e.target.value);
   }
 
-  // let debouncedInput = useDebounce(searchInput, 1000); // TODO re-add later
+  let debouncedInput = useDebounce(searchInput, 1000);
   // let debouncedInput = searchInput;
 
   useEffect(() => {
@@ -37,9 +36,8 @@ const SearchField = function SearchField({
 
   useEffect(() => {
     async function fetchAirportData() {
-      if (searchInput) {
-        console.log('if fetchAirportData: ', searchInput);
-        const data = await getAirportSearchData(searchInput);
+      if (debouncedInput) {
+        const data = await getAirportSearchData(debouncedInput);
         setSearchOptions(
           data.map((it) => ({
             ...it,
@@ -47,12 +45,11 @@ const SearchField = function SearchField({
           }))
         );
       } else {
-        console.log('else fetchAirportData: ', searchInput);
         setSearchOptions(null);
       }
     }
     fetchAirportData();
-  }, [searchInput]);
+  }, [debouncedInput]);
 
   const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +60,6 @@ const SearchField = function SearchField({
     if (newValue === '') {
       handleSelectOrigin(null);
     } else if (selectedOption) {
-      console.log('onInputChange: ', newValue);
       setSearchInput(newValue);
       handleSelectOrigin(selectedOption);
     } else {

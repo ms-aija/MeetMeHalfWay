@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchField from './SearchField';
 import { getDestinationCityList } from '../services/airportsService';
 import { findCommonArrayEls } from '../utils/findCommon';
@@ -7,11 +7,31 @@ import { IAirport } from '../interfaces/Airports';
 
 function SearchPanel() {
   const [addInputDisabled, setAddInputDisabled] = useState<boolean>(false);
+  const [missingOrigins, setMissingOrigins] = useState<boolean>(false);
 
   // get origin airports from context
   const { origins, setOrigins, setDestinationCities } = useAirportSearch()!;
 
+  useEffect(() => {
+    const checkForMissingOrigins = () => {
+      for (let origin of origins) {
+        if (!origin) {
+          setMissingOrigins(true);
+          return;
+        }
+      }
+      setMissingOrigins(false);
+    };
+
+    checkForMissingOrigins();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [origins]);
+
   const handleSearch = () => {
+    if (missingOrigins) {
+      setDestinationCities([]);
+      return;
+    }
     let promises = [];
     for (let origin of origins) {
       origin && promises.push(getDestinationCityList(origin.iataCode));
@@ -20,7 +40,6 @@ function SearchPanel() {
     // -- Get destinations for each origin city and find common destinations
     Promise.all(promises)
       .then((results) => {
-        console.log({ results });
         let commonDestinations = findCommonArrayEls(results);
         setDestinationCities(commonDestinations);
         // TODO: all logic that if any result.status === 500, send an alert to try again
@@ -29,7 +48,6 @@ function SearchPanel() {
   };
 
   const handleAddInput = () => {
-    console.log('handle add input');
     setOrigins((prev) => [...prev, null]);
     if (origins.length >= 4) {
       setAddInputDisabled(true);
@@ -37,10 +55,8 @@ function SearchPanel() {
   };
 
   const handleRemoveOrigin = (origin: IAirport | null) => {
-    console.log('handleRemoveOrigin', origin);
     setOrigins((prev) => {
       const updatedOrigins = prev.filter((it) => it?.name !== origin?.name);
-      console.log({ updatedOrigins });
       return updatedOrigins;
     });
   };
@@ -59,7 +75,6 @@ function SearchPanel() {
   return (
     <div className={'SearchPanel'}>
       {origins.map((origin, i) => {
-        console.log('searchField:', origin?.name, i);
         return (
           <SearchField
             key={`SearchField-${origin?.displayName} ${i}`}

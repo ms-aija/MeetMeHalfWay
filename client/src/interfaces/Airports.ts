@@ -36,10 +36,11 @@ export interface IAirport {
     longitude: number;
   };
   address: {
-    cityName: string;
-    cityCode: string;
+    cityName?: string;
+    cityCode?: string;
     countryName: string;
     countryCode: string;
+    stateCode?: string;
     regionCode: string;
   };
   analytics?: {

@@ -1,37 +1,60 @@
 // (1) Destination successful response type definition
 interface AmadeusDestinationSelf {
-  self: string
+  self: string;
 }
 
 interface AmadeusDestinationMeta {
-  origin: string
-  count: number
-  links: AmadeusDestinationSelf
+  origin: string;
+  count: number;
+  links: AmadeusDestinationSelf;
 }
 
 export interface AmadeusDestinationCity {
-  type: string
-  subtype: string
-  name: string
-  iataCode: string
+  type: string;
+  subtype: string;
+  name: string;
+  iataCode: string;
 }
 // Use this interface in code for destination result
 export interface AmadeusDestinationResult {
-  meta: AmadeusDestinationMeta
-  data: AmadeusDestinationCity[]
+  meta: AmadeusDestinationMeta;
+  data: AmadeusDestinationCity[];
 }
 
 // (2) Destination error response type definition
 interface AmadeusDestinationErrorSource {
-  parameter: string
-  pointer: string
-  example: string
+  parameter: string;
+  pointer: string;
+  example: string;
 }
 
 export interface AmadeusDestinationError {
-  status: number
-  code: number
-  title: string
-  detail: string
-  source: AmadeusDestinationErrorSource
+  status: number;
+  code: number;
+  title: string;
+  detail: string;
+  source: AmadeusDestinationErrorSource;
+}
+
+export interface IDestinationCity {
+  type: string;
+  subtype: string;
+  name: string;
+  iataCode: string;
+  geoCode: {
+    latitude: number;
+    longitude: number;
+  };
+  address: {
+    countryName: string;
+    countryCode: string;
+    regionCode: string;
+  };
+  timeZone: {
+    offSet: string;
+    referenceLocalDateTime: string;
+  };
+  metrics?: {
+    relevance: number;
+  };
 }
