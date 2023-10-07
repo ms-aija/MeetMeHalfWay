@@ -1,44 +1,42 @@
-import { createContext, useState, useContext, useRef} from "react";
-// import { IAirport } from "../interfaces/Airports";
-import { IAirportInput } from "../interfaces/Airports";
-import { IAirport } from "../interfaces/Airports";
-
+import { createContext, useState, useContext } from 'react';
+import { IAirport } from '../interfaces/Airports';
+import { IDestinationCity } from '../interfaces/DestinationCities';
 
 interface IAirportSearchContext {
-  origin1: IAirportInput,
-  setOrigin1: React.Dispatch<React.SetStateAction<IAirportInput>>,
-  origin2: IAirportInput,
-  setOrigin2: React.Dispatch<React.SetStateAction<IAirportInput>>,
-  origin3: IAirportInput,
-  setOrigin3: React.Dispatch<React.SetStateAction<IAirportInput>>,
-  count: React.MutableRefObject<number>,
-  destinationCities: IAirport[],
-  setDestinationCities: React.Dispatch<React.SetStateAction<IAirport[]>>
+  origins: (IAirport | null)[];
+  setOrigins: React.Dispatch<React.SetStateAction<(IAirport | null)[]>>;
+  destinationCities: IDestinationCity[];
+  setDestinationCities: React.Dispatch<
+    React.SetStateAction<IDestinationCity[]>
+  >;
 }
 
 const AirportSearchContext = createContext<IAirportSearchContext | null>(null);
 
-export default function AirportSearchProvider ({children}: {children: React.ReactNode}) {
-  const [origin1, setOrigin1] = useState<IAirportInput>({visible: true, content: null});
-  const [origin2, setOrigin2] = useState<IAirportInput>({visible: true, content: null});
-  const [origin3, setOrigin3] = useState<IAirportInput>({visible: false, content: null});
-  const [destinationCities, setDestinationCities] = useState<IAirport[]>([]);
+export default function AirportSearchProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [origins, setOrigins] = useState<(IAirport | null)[]>([null, null]);
+  const [destinationCities, setDestinationCities] = useState<
+    IDestinationCity[]
+  >([]);
 
-  let count = useRef(2);
-
-
+  console.log(origins.map((it) => it?.name).join(','));
   return (
-    <AirportSearchContext.Provider value={{
-      origin1, setOrigin1,
-      origin2, setOrigin2,
-      origin3, setOrigin3,
-      count,
-      destinationCities, setDestinationCities
-      }}>
+    <AirportSearchContext.Provider
+      value={{
+        origins,
+        setOrigins,
+        destinationCities,
+        setDestinationCities,
+      }}
+    >
       {children}
     </AirportSearchContext.Provider>
-  )
-};
+  );
+}
 
 export function useAirportSearch() {
   return useContext(AirportSearchContext);

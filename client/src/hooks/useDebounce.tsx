@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 
 export function useDebounce(value: string, delay: number) {
-    console.log('useDebounce called with value: ',value)
+    // console.log('useDebounce called with value: ',value)
     const [debouncedValue, setDebouncedValue] = useState<string>(value);
 
     useEffect(() => {
@@ -13,6 +13,6 @@ export function useDebounce(value: string, delay: number) {
             clearTimeout(debounceHandler);
         };
     }, [value, delay]);
-    console.log('useDebounce returning: ',debouncedValue)
+    // console.log('useDebounce returning: ',debouncedValue)
     return debouncedValue;
 }
