@@ -23,7 +23,6 @@ export default function AirportSearchProvider({
     IDestinationCity[]
   >([]);
 
-  console.log(origins.map((it) => it?.name).join(','));
   return (
     <AirportSearchContext.Provider
       value={{

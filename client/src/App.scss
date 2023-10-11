@@ -4,12 +4,12 @@
 
 $color-darkest: #5a5458;
 $color-dark: #7c747a;
-$color-medium: #8D83AC;
-$color-light: #D3DBE5;
-$color-lightest: #94BAD3;
+$color-medium: #8d83ac;
+$color-light: #d3dbe5;
+$color-lightest: #94bad3;
 $color-text-light: #d8e4ec;
 $color-text-medium: #7b9ab0;
-$color-text-dark: #002F38;
+$color-text-dark: #002f38;
 $color-borders: rgb(159, 159, 159);
 
 :root {
@@ -59,8 +59,8 @@ body {
 }
 
 .Navbar {
-  background-image: url(./assets/friendssmall2.jpg);
-  background-position: center;
+  background-image: url(./assets/rsz_people.jpg);
+  background-position: stretch;
   height: 170px;
   margin-bottom: 20px;
   padding-top: 40px;
@@ -156,13 +156,11 @@ body {
     padding: 9px;
 
     @media screen and (max-width: 550px) {
-    width: 70vw;
-    height: 37px;
-
+      width: 70vw;
+      height: 37px;
     }
   }
 }
-
 
 .SearchResult {
   display: flex;
@@ -219,6 +217,6 @@ body {
     padding: 0;
     margin-bottom: 0.2rem;
     margin-top: 0;
-    font-family:'Courier New', Courier, monospace
+    font-family: 'Courier New', Courier, monospace;
   }
 }

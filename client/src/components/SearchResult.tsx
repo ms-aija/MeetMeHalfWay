@@ -2,7 +2,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import { useAirportSearch } from '../context/airportContext';
-// import { IAirport } from '../interfaces/Airports';
 
 const SearchResult = () => {
   const { origins } = useAirportSearch()!;

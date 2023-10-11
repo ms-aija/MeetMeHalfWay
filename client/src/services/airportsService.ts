@@ -6,17 +6,37 @@ const BASE_URL = 'http://localhost:3005';
 
 export const getAirportSearchData = async (searchTerm: string) => {
   // ! RETURN ACTUAL DATA
+  // let response;
+
   // try {
-  //   const res = await fetch(`${BASE_URL}/airports/${searchTerm}`);
-  //   const data = await res.json()
-  //   return data
+  //   response = await fetch(`${BASE_URL}/airports/${searchTerm}`);
   // } catch (err) {
-  //   console.log(err);
-  //   throw err;
+  //   response = {
+  //     ok: false,
+  //     status: 500,
+  //     json: async () => {
+  //       return {
+  //         code: 500,
+  //         message: 'The server is not responding',
+  //         description: `${err}`,
+  //       };
+  //     },
+  //   };
   // }
+
+  // return {
+  //   ok: response.ok,
+  //   status: response.status,
+  //   body: await response.json(),
+  // };
+
   // ! RETURN MOCK DATA
   if (searchTerm === '') {
-    return [];
+    return {
+      ok: true,
+      status: 200,
+      body: [],
+    };
   } else {
     // search through airportSEarchResultMock to check if searchTerm is included in address.cityName and return the full object
     const res = airportSearchResultMock.filter((airport) => {
@@ -24,7 +44,11 @@ export const getAirportSearchData = async (searchTerm: string) => {
         .cityName!.toLowerCase()
         .includes(searchTerm.split(',')[0].toLowerCase());
     });
-    return res;
+    return {
+      ok: true,
+      status: 200,
+      body: res,
+    };
   }
 };
 
@@ -45,6 +69,5 @@ export const getDestinationCityList = (
     randomIndex,
     randomIndex + 20
   );
-  console.log({ subsetOfMocks });
   return Promise.resolve(subsetOfMocks);
 };

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import Express from 'express';
 import cors from 'cors';
@@ -6,8 +6,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 import router from './router';
-
-console.log(process.env.CLIENT_ID);
 
 const app = Express();
 
