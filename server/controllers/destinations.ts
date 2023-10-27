@@ -12,16 +12,17 @@ export function getDestinationCityList(
       max: 300,
     })
     .then(function (response: AmadeusDestinationResult) {
-      res.json(response.data);
+      res.json({ status: 'OK', data: response.data });
       res.status(200);
     })
     .catch(function (error: AmadeusDestinationError) {
-      const errorMsg = {
-        description:
-          'The server could not return the list of destination cities at this time',
-        message: 'Not available',
-      };
-      res.json(errorMsg);
+      res.json({
+        status: 'FAILED',
+        data: {
+          error:
+            'The server could not return the list of destination cities at this time',
+        },
+      });
       res.status(500);
       console.error(error);
     });

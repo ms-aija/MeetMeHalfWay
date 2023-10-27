@@ -9,15 +9,13 @@ export async function getAirports(req: Express.Request, res: Express.Response) {
       keyword: airportName,
       subType: 'AIRPORT',
     });
-    res.json(response.data);
+    res.json({ status: 'OK', data: response.data });
     res.status(200);
   } catch (err) {
-    const errorMsg = {
-      description:
-        'The server could not return the list of airports at this time',
-      message: 'Not available',
-    };
-    res.json(errorMsg);
+    res.json({
+      status: 'FAILED',
+      data: 'Failed to get list of airports. Try again.',
+    });
     res.status(500);
     console.error(err);
   }
